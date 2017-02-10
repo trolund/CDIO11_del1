@@ -1,14 +1,10 @@
 package dal;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import dto.UserDTO;
 
 public class UserDAODiscImpl implements IUserDAO {
-	
-	List<Bruger> brugere = new ArrayList<Bruger>();
-	
 
 	@Override
 	public UserDTO getUser(int userId) throws DALException {
@@ -23,8 +19,6 @@ public class UserDAODiscImpl implements IUserDAO {
 	@Override
 	public void createUser(UserDTO user) throws DALException {
 		
-		
-
 	}
 
 	@Override

@@ -1,5 +1,5 @@
 package view;
 
-public class TUI {
+public class TUI implements ITUI {
 
 }

@@ -54,7 +54,6 @@ public class UserDTO implements Serializable {
 	}
 
 	/**
-	 * 
 	 * @param role
 	 * @return true if role existed, false if not
 	 */
