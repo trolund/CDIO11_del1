@@ -15,7 +15,10 @@ public class TUI implements ITUI {
 
 		do {
 			System.out.print("Bruger Id [11-99]: ");
-			while (!scanner.hasNextInt()) scanner.next();
+			while (!scanner.hasNextInt()) {
+				scanner.next();
+				System.out.print("Bruger Id [11-99]: ");
+			}
 			userId = scanner.nextInt();
 		} while (userId < 11 || userId > 99);
 
