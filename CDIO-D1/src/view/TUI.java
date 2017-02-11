@@ -11,8 +11,16 @@ public class TUI implements ITUI {
 	}
 
 	public void createUser() {
-		int userId = -1;
 
+		/**
+		 * Skal denne kodeblok evt ind i funktionalitets laget? 
+		 * Det er jo noget funktionalitet, på den måde, at man 
+		 * får en integer fra brugeren.
+		 * 
+		 * Vi kunne evt. lave en getUserInt() metode i funktionalitetslaget,
+		 * som så returnerer en int ind til TUI laget?
+		 */
+		int userId = -1;
 		do {
 			System.out.print("Bruger Id [11-99]: ");
 			while (!scanner.hasNextInt()) {
