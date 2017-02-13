@@ -18,26 +18,33 @@ public class Data implements IData {
 
 	@Override
 	public UserDTO getUser(int userId) throws DALException {
+		for (int i = 0; i < userStore.size(); i++) {
+			if (userStore.get(i).getUserId() == userId) return userStore.get(i);
+		}
+		/* What to return if the user is not found? */
 		return null;
 	}
 
 	@Override
 	public List<UserDTO> getUserList() throws DALException {
-		return null;
+		return userStore;
 	}
 
 	@Override
 	public void createUser(UserDTO user) throws DALException {
-
+		
 	}
 
 	@Override
 	public void updateUser(UserDTO user) throws DALException {
-
+		
 	}
 
 	@Override
 	public void deleteUser(int userId) throws DALException {
+		for (int i = 0; i < userStore.size(); i++) {
+			if (userStore.get(i).getUserId() == userId) userStore.remove(i);
+		}
 
 	}
 
