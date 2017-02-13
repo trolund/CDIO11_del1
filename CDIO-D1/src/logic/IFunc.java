@@ -1,6 +1,12 @@
 package logic;
 
 public interface IFunc {
+	
+	
+	
+	public boolean createUser(int userId, String userName, String ini, String cpr, String pass, String role);
+	
+	
 		
 	public class IllegalInputException extends IllegalArgumentException {
 		private static final long serialVersionUID = 1L;

@@ -1,7 +1,10 @@
 package ui;
 
 public interface ITUI {
+	
+	public void dialog();
 
-	void showMessage(String message);
+	public void showMessage(String message);
+	
 
 }
