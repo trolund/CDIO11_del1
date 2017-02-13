@@ -45,7 +45,6 @@ public class Data implements IData {
 		for (int i = 0; i < userStore.size(); i++) {
 			if (userStore.get(i).getUserId() == userId) userStore.remove(i);
 		}
-
 	}
 
 }
