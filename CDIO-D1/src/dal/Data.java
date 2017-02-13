@@ -32,7 +32,7 @@ public class Data implements IData {
 
 	@Override
 	public void createUser(UserDTO user) throws DALException {
-		
+		userStore.add(user);
 	}
 
 	@Override
