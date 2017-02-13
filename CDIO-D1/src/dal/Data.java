@@ -1,8 +1,20 @@
 package dal;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Data implements IData {
+
+	private final List<UserDTO> userStore;
+
+	public Data() {
+		userStore = new ArrayList<>();
+
+		userStore.add(new UserDTO(0, "Admin", "ADM", "Admin"));
+		userStore.add(new UserDTO(1, "PHMC01", "PHMC", "Pharmacist"));
+		userStore.add(new UserDTO(2, "FM01", "FM", "Foreman"));
+		userStore.add(new UserDTO(3, "OP01", "OP", "Operator"));
+	}
 
 	@Override
 	public UserDTO getUser(int userId) throws DALException {
@@ -16,7 +28,7 @@ public class Data implements IData {
 
 	@Override
 	public void createUser(UserDTO user) throws DALException {
-		
+
 	}
 
 	@Override
