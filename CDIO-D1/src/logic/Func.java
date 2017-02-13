@@ -15,6 +15,16 @@ public class Func implements IFunc {
 		if(userId < 11 || userId > 99){
 			
 		}
+		else
+		{ 
+			throw new IllegalInputException("Bruger id skal være mellem 11 og 99!");
+		}
+		
+		
+		
+		
+		
+		
 		
 		
 		
