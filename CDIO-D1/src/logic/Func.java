@@ -1,6 +1,7 @@
 package logic;
 
 import dal.IData;
+import dal.IData.DALException;
 import dal.UserDTO;
 
 public class Func implements IFunc {
@@ -10,25 +11,21 @@ public class Func implements IFunc {
 	public Func(IData data) {
 		this.data = data;
 	}
-	
-	public void createUser(int userId,String userName, String ini, String cpr, String pass, String role) throws IllegalArgumentException {
-		if(userId < 11 || userId > 99){
-			
-		}
-		else
-		{ 
+
+	public void createUser(int userId, String userName, String ini, String cpr, String pass, String role) throws IllegalArgumentException {
+		if (userId < 11 || userId > 99) {
+
+		} else {
 			throw new IllegalInputException("Bruger id skal være mellem 11 og 99!");
 		}
+
+		/* What to do with the exception here? */
+		try {
+			data.createUser(new UserDTO(userId, userName, ini, cpr));
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		data.createUser(new UserDTO(userId,userName, ini, cpr));
 	}
 
 }

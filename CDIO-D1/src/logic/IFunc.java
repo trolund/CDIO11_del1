@@ -1,9 +1,7 @@
 package logic;
 
 public interface IFunc {
-	
-	
-	
+		
 	public class IllegalInputException extends IllegalArgumentException {
 		private static final long serialVersionUID = 1L;
 
