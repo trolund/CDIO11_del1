@@ -2,9 +2,7 @@ package dal;
 
 import java.util.List;
 
-import dto.UserDTO;
-
-public interface IUserDAO {
+public interface IData {
 	
 	UserDTO getUser(int userId) throws DALException;
 	List<UserDTO> getUserList() throws DALException;

@@ -2,9 +2,7 @@ package dal;
 
 import java.util.List;
 
-import dto.UserDTO;
-
-public class UserDAODiscImpl implements IUserDAO {
+public class Data implements IData {
 
 	@Override
 	public UserDTO getUser(int userId) throws DALException {

@@ -1,4 +1,4 @@
-package dto;
+package dal;
 
 import java.io.Serializable;
 import java.util.ArrayList;
