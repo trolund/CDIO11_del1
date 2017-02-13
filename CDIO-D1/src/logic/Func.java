@@ -12,9 +12,9 @@ public class Func implements IFunc {
 		this.data = data;
 	}
 
-	public void createUser(int userId, String userName, String ini, String cpr, String pass, String role) throws IllegalArgumentException {
+	public void createUser(int userId, String userName, String ini, String cpr, String pass, String role) {
 		if (userId < 11 || userId > 99) {
-
+			
 		} else {
 			throw new IllegalInputException("Bruger id skal være mellem 11 og 99!");
 		}
