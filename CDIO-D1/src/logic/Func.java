@@ -12,7 +12,7 @@ public class Func implements IFunc {
 		this.data = data;
 	}
 
-	public void createUser(int userId, String userName, String ini, String cpr, String pass, String role) {
+	public boolean createUser(int userId, String userName, String ini, String cpr, String pass, String role) {
 		if (userId < 11 || userId > 99) {
 			
 		} else {
@@ -22,9 +22,12 @@ public class Func implements IFunc {
 		/* What to do with the exception here? */
 		try {
 			data.createUser(new UserDTO(userId, userName, ini, cpr));
+			return true;
 		} catch (DALException e) {
 			e.printStackTrace();
+			
 		}
+		return false;
 		
 	}
 

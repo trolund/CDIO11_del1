@@ -7,7 +7,8 @@ import ui.TUI;
 public class Main {
 
 	public static void main(String[] args) {
-		new TUI(new Func(new Data()));
+		TUI tui = new TUI(new Func(new Data()));
+		tui.dialog();
 	}
 
 }
