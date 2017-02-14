@@ -2,7 +2,7 @@ package logic;
 
 public interface ILogic {
 
-	public void createUser(String cpr, int userId, String userName, String password, String ini, String role);
+	public void createUser();
 	
 
 	public class IllegalInputException extends IllegalArgumentException {

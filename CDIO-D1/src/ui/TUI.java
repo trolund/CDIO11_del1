@@ -9,15 +9,19 @@ public class TUI implements ITUI {
 	private ILogic func;
 	private Scanner input = new Scanner(System.in);
 
+	private final LanguageHandler languageHandler;
+	
+	
 	public TUI(ILogic func) {
 		this.func = func;
+		this.languageHandler = LanguageHandler.getInstance();
 	}
 
 	public void dialog() {
 		while (true) {
-			System.out.println("TUI - Interface");
-			System.out.println("Press 1 - Create user");
-
+				
+			System.out.println(languageHandler.menuMessage);
+			
 			int action = input.nextInt();
 			input.nextLine();
 
