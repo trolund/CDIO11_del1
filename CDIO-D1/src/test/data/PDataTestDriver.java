@@ -4,7 +4,7 @@ import data.IData;
 import data.IData.DALException;
 import data.PData;
 
-public class PDataTest {
+public class PDataTestDriver {
 
 	public static void main(String[] args) {
 
