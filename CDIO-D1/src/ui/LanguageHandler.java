@@ -4,14 +4,18 @@ public class LanguageHandler {
 	
 	private static final LanguageHandler instance = new LanguageHandler();
 	
-	private final String menuMessage = "/--------------------\\n" 
-									 + "|  Administrations   |\n"
-									 + "|  modul             |\n"
+	public final String menuMessage = "/--------------------\\\n" 
+									 + "| Administrations    |\n"
+									 + "| modul              |\n"
 									 + "|--------------------|\n"
 									 + "| Kommando        ID |\n"
 									 + "|--------------------|\n"
-									 + "| Opret bruger     1 |"
-									 + "| ";
+									 + "| Vis hjælp        0 |\n"
+									 + "| Opret bruger     1 |\n"
+									 + "| Vis brugere      2 |\n"
+									 + "| Opdatér bruger   3 |\n"
+									 + "| Slet bruger      4 |\n"
+									 + "\\-------------------/";
 
 	private LanguageHandler() {
 
