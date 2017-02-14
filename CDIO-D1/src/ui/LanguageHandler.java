@@ -10,12 +10,13 @@ public class LanguageHandler {
 									 + "|--------------------|\n"
 									 + "| Kommando        ID |\n"
 									 + "|--------------------|\n"
-									 + "| Vis hjælp        0 |\n"
-									 + "| Opret bruger     1 |\n"
-									 + "| Vis brugere      2 |\n"
-									 + "| Opdatér bruger   3 |\n"
-									 + "| Slet bruger      4 |\n"
-									 + "\\-------------------/";
+									 + "| Vis hjælp        1 |\n"
+									 + "| Opret bruger     2 |\n"
+									 + "| Vis brugere      3 |\n"
+									 + "| Opdatér bruger   4 |\n"
+									 + "| Slet bruger      5 |\n"
+									 + "| Afslut           0 |\n"
+									 + "\\--------------------/";
 
 	private LanguageHandler() {
 
