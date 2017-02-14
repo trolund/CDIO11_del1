@@ -1,13 +1,13 @@
 package main;
 
-import dal.NPData;
-import logic.Func;
+import data.NPData;
+import logic.Logic;
 import ui.TUI;
 
 public class Main {
 
 	public static void main(String[] args) {
-		TUI tui = new TUI(new Func(new NPData()));
+		TUI tui = new TUI(new Logic(new NPData()));
 		tui.dialog();
 	}
 

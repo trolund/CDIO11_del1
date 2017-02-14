@@ -1,6 +1,6 @@
 package logic;
 
-public interface IFunc {
+public interface ILogic {
 	
 	
 	

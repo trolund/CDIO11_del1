@@ -1,13 +1,13 @@
 package ui;
 
-import logic.IFunc;
+import logic.ILogic;
 
 public class TUI implements ITUI {
 
-	private IFunc func;
+	private ILogic func;
 	private java.util.Scanner input = new java.util.Scanner(System.in);
 
-	public TUI(IFunc func) {
+	public TUI(ILogic func) {
 		this.func = func;
 	}
 	

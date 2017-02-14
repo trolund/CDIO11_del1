@@ -1,14 +1,14 @@
 package logic;
 
-import dal.IData;
-import dal.IData.DALException;
-import dal.UserDTO;
+import data.IData;
+import data.UserDTO;
+import data.IData.DALException;
 
-public class Func implements IFunc {
+public class Logic implements ILogic {
 
 	private IData data;
 
-	public Func(IData data) {
+	public Logic(IData data) {
 		this.data = data;
 	}
 

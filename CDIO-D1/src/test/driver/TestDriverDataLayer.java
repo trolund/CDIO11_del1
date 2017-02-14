@@ -1,7 +1,7 @@
-package test.drivers;
+package test.driver;
 
-import dal.NPData;
-import dal.IData;
+import data.IData;
+import data.NPData;
 
 public class TestDriverDataLayer {
 
