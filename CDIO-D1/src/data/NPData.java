@@ -11,12 +11,10 @@ public class NPData implements IData {
 	public NPData() {
 		userStoreList = new ArrayList<>();
 
-		userStoreList.add(new UserDTO(2, "FM01", "FM", "Foreman"));
-		userStoreList.add(new UserDTO(0, "Admin", "ADM", "Admin"));
-		userStoreList.add(new UserDTO(3, "OP01", "OP", "Operator"));
-		userStoreList.add(new UserDTO(1, "PHMC01", "PHMC", "Pharmacist"));
-		
-		/* TEMP */
+		userStoreList.add(new UserDTO("0123", 2, "FM01", "pass0123", "FM", "Foreman"));
+		userStoreList.add(new UserDTO("0122", 0, "Admin", "pass0122", "ADM", "Admin"));
+		userStoreList.add(new UserDTO("0121", 3, "OP01", "pass0121", "OP", "Operator"));
+		userStoreList.add(new UserDTO("0120", 1, "PHMC01", "pass0121", "PHMC", "Pharmacist"));
 		Collections.sort(userStoreList);
 	}
 
@@ -54,12 +52,10 @@ public class NPData implements IData {
 
 	@Override
 	public void updateUser(UserDTO user) throws DALException {
+	
 		
-		/*
-		 * Hvis brugeren bliver opdateret, 
-		 * så sortere vi igen, da userId eventuelt
-		 * er blevet opdateret.
-		 */
+		
+		
 		Collections.sort(userStoreList);
 	}
 

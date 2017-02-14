@@ -7,14 +7,18 @@ import java.util.List;
 public class UserDTO implements Serializable, Comparable<UserDTO> {
 	private static final long serialVersionUID = 1L;
 
+	private String cpr;
 	private int userId;
 	private String userName;
+	private String password;
 	private String ini;
 	private List<String> roles;
 
-	public UserDTO(int userId, String userName, String ini, String role) {
+	public UserDTO(String cpr, int userId, String userName, String password, String ini, String role) {
+		this.cpr = cpr;
 		this.userId = userId;
 		this.userName = userName;
+		this.password = password;
 		this.ini = ini;
 
 		this.roles = new ArrayList<>();
@@ -31,6 +35,14 @@ public class UserDTO implements Serializable, Comparable<UserDTO> {
 		return -1;
 	}
 
+	public String getCpr() {
+		return cpr;
+	}
+
+	public void setCpr(String cpr) {
+		this.cpr = cpr;
+	}
+
 	public int getUserId() {
 		return userId;
 	}
@@ -45,6 +57,14 @@ public class UserDTO implements Serializable, Comparable<UserDTO> {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getIni() {
