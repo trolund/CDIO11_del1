@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDTO implements Serializable, Comparable {
+public class UserDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int userId;
@@ -19,18 +19,6 @@ public class UserDTO implements Serializable, Comparable {
 
 		this.roles = new ArrayList<>();
 		this.roles.add(role);
-	}
-
-	@Override
-	public int compareTo(Object obj) {
-		if (obj.getClass().equals(UserDTO.class)) {
-			if (((UserDTO) obj).userId == this.userId) {
-				return 0;
-			} else if (((UserDTO) obj).userId > this.userId) { 
-				return -1; 
-			}
-		}
-		return 1;
 	}
 
 	public int getUserId() {

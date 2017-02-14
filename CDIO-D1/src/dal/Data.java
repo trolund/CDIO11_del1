@@ -16,9 +16,20 @@ public class Data implements IData {
 		userStore.add(new UserDTO(3, "OP01", "OP", "Operator"));
 	}
 
-	private UserDTO binarysearch(List<UserDTO> list, int low, int high, UserDTO user) {
-		/* implement binary search */
-		return null;
+	private UserDTO binarysearch(List<UserDTO> list, int low, int high, int userId) throws DALException {
+		if (low > high) throw new DALException("Unable to search in the list. High (" + high + "), low (" + low + ")");
+
+		int mid = low + (high - low) / 2;
+
+		if (list.get(mid).getUserId() == userId) {
+			return list.get(mid);
+		} else if (list.get(mid).getUserId() > userId) {
+			return binarysearch(list, low, mid - 1, userId);
+		} else if (list.get(mid).getUserId() < userId) {
+			return binarysearch(list, mid + 1, high, userId);
+		}
+
+		throw new DALException("User with userId (" + userId + ") not found in the list");
 	}
 
 	private void mergesort(List<UserDTO> list) {
