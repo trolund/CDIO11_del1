@@ -1,6 +1,7 @@
 package dal;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Data implements IData {
@@ -10,10 +11,14 @@ public class Data implements IData {
 	public Data() {
 		userStore = new ArrayList<>();
 
-		userStore.add(new UserDTO(0, "Admin", "ADM", "Admin"));
-		userStore.add(new UserDTO(1, "PHMC01", "PHMC", "Pharmacist"));
 		userStore.add(new UserDTO(2, "FM01", "FM", "Foreman"));
+		userStore.add(new UserDTO(0, "Admin", "ADM", "Admin"));
 		userStore.add(new UserDTO(3, "OP01", "OP", "Operator"));
+		userStore.add(new UserDTO(1, "PHMC01", "PHMC", "Pharmacist"));
+		
+		// Hmm? Skal vi bruge mergesort i stedet? :S
+		Collections.sort(userStore);
+		
 	}
 
 	private UserDTO binarysearch(List<UserDTO> list, int low, int high, int userId) throws DALException {
@@ -32,19 +37,9 @@ public class Data implements IData {
 		throw new DALException("User with userId (" + userId + ") not found in the list");
 	}
 
-	private void mergesort(List<UserDTO> list) {
-
-	}
-
-	private void sort(List<UserDTO> list) {
-
-	}
-
 	@Override
 	public UserDTO getUser(int userId) throws DALException {
-		for (int i = 0; i < userStore.size(); i++)
-			if (userStore.get(i).getUserId() == userId) return userStore.get(i);
-		throw new DALException("User not found in the data access layer");
+		return binarysearch(userStore, 0, userStore.size() - 1, userId);
 	}
 
 	@Override
