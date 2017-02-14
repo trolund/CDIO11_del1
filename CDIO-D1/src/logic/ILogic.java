@@ -2,9 +2,10 @@ package logic;
 
 public interface ILogic {
 
-	public void createUser();
+	void createUser(String cpr, int userId, String userName, String password, String ini, String role);
+	String getStringInput();
+	int getIntInput();
 	
-
 	public class IllegalInputException extends IllegalArgumentException {
 		private static final long serialVersionUID = 1L;
 

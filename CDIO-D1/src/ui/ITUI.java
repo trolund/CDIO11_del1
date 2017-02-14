@@ -1,10 +1,7 @@
 package ui;
 
 public interface ITUI {
-	
-	public void dialog();
-
-	public void showMessage(String message);
-	
-
+	void initTUI();
+	void print(String message);
+	void createUser();
 }

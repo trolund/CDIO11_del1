@@ -1,70 +1,65 @@
 package ui;
 
-import java.util.Scanner;
-
 import logic.ILogic;
 
 public class TUI implements ITUI {
 
-	private ILogic func;
-	private Scanner input = new Scanner(System.in);
+	private ILogic logic;
 
 	private final LanguageHandler languageHandler;
-	
-	
-	public TUI(ILogic func) {
-		this.func = func;
+
+	public TUI(ILogic logic) {
+		this.logic = logic;
 		this.languageHandler = LanguageHandler.getInstance();
 	}
 
-	public void dialog() {
+	public void initTUI() {
 		while (true) {
-				
-			System.out.println(languageHandler.menuMessage);
-			
-			int action = input.nextInt();
-			input.nextLine();
+			print(languageHandler.menuMessage);
 
-			if (action == 1) {
-				boolean done = false;
-				do {
-					this.showMessage("Enter id:");
-					int userId = input.nextInt();
-					input.nextLine();
+			print("Kommando: ");
+			int command = logic.getIntInput();
 
-					this.showMessage("Enter Name:");
-					String userName = input.next();
-					input.nextLine();
-
-					this.showMessage("Enter Initialer:");
-					String ini = input.next();
-					input.nextLine();
-
-					this.showMessage("Enter Cpr:");
-					String cpr = input.next();
-					input.nextLine();
-
-					this.showMessage("Enter pass:");
-					String pass = input.next();
-					input.nextLine();
-
-					this.showMessage("Enter role:");
-					String role = input.next();
-					input.nextLine();
-
-					//done = func.createUser(userId, userName, ini, cpr, pass, role);
-				} while (!done);
-
-			} else if (action == 2) {
-
-			} else {
-				this.showMessage("invalid input");
+			switch (command) {
+			case 1:
+				break;
+			case 2:
+				createUser();
+				break;
+			case 3:
+				break;
+			default:
+				print("Ugyldig kommando.");
+				break;
 			}
 		}
 	}
 
 	@Override
-	public void showMessage(String message) {
+	public void createUser() {
+		print("Indtast CPR: ");
+		String cpr = logic.getStringInput();
+
+		print("Indtast bruger id:");
+		int userId = logic.getIntInput();
+
+		print("Indtast brugernavn:");
+		String userName = logic.getStringInput();
+
+		print("Indtast password: ");
+		String password = logic.getStringInput();
+
+		print("Indtast initialer:");
+		String ini = logic.getStringInput();
+
+		print("Intdtast rolle: ");
+		String role = logic.getStringInput();
+
+		logic.createUser(cpr, userId, userName, password, ini, role);
+	}
+
+	@Override
+	public void print(String message) {
 		System.out.println(message);
 	}
 
