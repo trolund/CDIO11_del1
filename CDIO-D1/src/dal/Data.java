@@ -15,10 +15,6 @@ public class Data implements IData {
 		userStore.add(new UserDTO(0, "Admin", "ADM", "Admin"));
 		userStore.add(new UserDTO(3, "OP01", "OP", "Operator"));
 		userStore.add(new UserDTO(1, "PHMC01", "PHMC", "Pharmacist"));
-		
-		// Hmm? Skal vi bruge mergesort i stedet? :S
-		Collections.sort(userStore);
-		
 	}
 
 	private UserDTO binarysearch(List<UserDTO> list, int low, int high, int userId) throws DALException {
@@ -35,6 +31,10 @@ public class Data implements IData {
 		}
 
 		throw new DALException("User with userId (" + userId + ") not found in the list");
+	}
+	
+	private List<UserDTO> mergesort() {
+		
 	}
 
 	@Override
@@ -59,8 +59,7 @@ public class Data implements IData {
 
 	@Override
 	public void deleteUser(int userId) throws DALException {
-		for (int i = 0; i < userStore.size(); i++)
-			if (userStore.get(i).getUserId() == userId) userStore.remove(i);
+		userStore.remove(binarysearch(userStore, 0, userStore.size() - 1, userId));
 	}
 
 }

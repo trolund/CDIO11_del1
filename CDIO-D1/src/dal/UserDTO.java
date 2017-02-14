@@ -27,10 +27,10 @@ public class UserDTO implements Serializable, Comparable {
 			if (((UserDTO) obj).getUserId() == this.userId) {
 				return 0;
 			} else if (((UserDTO) obj).getUserId() < this.userId) {
-				return -1;
+				return 1;
 			}
 		}
-		return 1;
+		return -1;
 	}
 
 	public int getUserId() {
