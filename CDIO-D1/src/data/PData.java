@@ -40,6 +40,7 @@ public class PData implements IData {
 				}
 			}
 		}
+		System.out.println("DEBUGGING: Saved to file + " + dataFile.getName() + " + successfully.");
 	}
 
 	public void loadUsers() throws DALException {
@@ -71,6 +72,7 @@ public class PData implements IData {
 				}
 			}
 		}
+		System.out.println("DEBUGGING: Loaded from file + " + dataFile.getName() + " + successfully.");
 	}
 
 	private UserDTO binarysearch(List<UserDTO> list, int low, int high, int userId) throws DALException {
