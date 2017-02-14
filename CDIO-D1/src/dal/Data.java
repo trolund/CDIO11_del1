@@ -21,6 +21,14 @@ public class Data implements IData {
 		return null;
 	}
 
+	private void mergesort(List<UserDTO> list) {
+
+	}
+
+	private void sort(List<UserDTO> list) {
+
+	}
+
 	@Override
 	public UserDTO getUser(int userId) throws DALException {
 		for (int i = 0; i < userStore.size(); i++)
