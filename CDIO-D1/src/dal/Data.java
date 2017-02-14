@@ -16,6 +16,11 @@ public class Data implements IData {
 		userStore.add(new UserDTO(3, "OP01", "OP", "Operator"));
 	}
 
+	private UserDTO binarysearch(List<UserDTO> list, int low, int high, UserDTO user) {
+		/* implement binary search */
+		return null;
+	}
+
 	@Override
 	public UserDTO getUser(int userId) throws DALException {
 		for (int i = 0; i < userStore.size(); i++)
@@ -35,7 +40,7 @@ public class Data implements IData {
 
 	@Override
 	public void updateUser(UserDTO user) throws DALException {
-		
+
 	}
 
 	@Override
