@@ -7,72 +7,113 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PData implements IData {
-	
-	File file = new File("Data.txt");
+
+	private List<UserDTO> userStoreList;
+	private final File dataFile;
+
+	public PData() {
+		userStoreList = new ArrayList<>();
+		dataFile = new File("data.bin");
+	}
+
+	public void saveUsers() throws DALException {
+		ObjectOutputStream oOS = null;
+		try {
+			FileOutputStream fOS = new FileOutputStream(dataFile);
+			oOS = new ObjectOutputStream(fOS);
+			oOS.writeObject(userStoreList);
+		} catch (FileNotFoundException e) {
+			throw new DALException("Error locating file", e);
+		} catch (IOException e) {
+			throw new DALException("Error writing to disk", e);
+		} finally {
+			if (oOS != null) {
+				try {
+					oOS.close();
+				} catch (IOException e) {
+					throw new DALException("Unable to close ObjectStream", e);
+				}
+			}
+		}
+	}
+
+	public void loadUsers() throws DALException {
+		ObjectInputStream oIS = null;
+		try {
+			FileInputStream fIS = new FileInputStream(dataFile);
+			oIS = new ObjectInputStream(fIS);
+			Object inObj = oIS.readObject();
+			if (inObj.getClass().equals(ArrayList.class)) {
+				/*
+				 * What happens here? Stupid warning.
+				 */
+				userStoreList = ((ArrayList<UserDTO>) inObj);
+			} else {
+				throw new DALException("Wrong object in file");
+			}
+		} catch (FileNotFoundException e) {
+			//No problem - just returning empty userstore
+		} catch (IOException e) {
+			throw new DALException("Error while reading disk!", e);
+		} catch (ClassNotFoundException e) {
+			throw new DALException("Error while reading file - Class not found!", e);
+		} finally {
+			if (oIS != null) {
+				try {
+					oIS.close();
+				} catch (IOException e) {
+					throw new DALException("Error closing pObjectStream!", e);
+				}
+			}
+		}
+	}
+
+	private UserDTO binarysearch(List<UserDTO> list, int low, int high, int userId) throws DALException {
+		if (low > high) throw new DALException("Unable to search in the list. High (" + high + "), low (" + low + ")");
+
+		int mid = low + (high - low) / 2;
+
+		if (list.get(mid).getUserId() == userId) {
+			return list.get(mid);
+		} else if (list.get(mid).getUserId() > userId) {
+			return binarysearch(list, low, mid - 1, userId);
+		} else if (list.get(mid).getUserId() < userId) {
+			return binarysearch(list, mid + 1, high, userId);
+		}
+
+		throw new DALException("User with userId (" + userId + ") not found in the list");
+	}
 
 	@Override
 	public UserDTO getUser(int userId) throws DALException {
-		
-		UserDTO user = null;
-		
-		try{
-		FileInputStream f = new FileInputStream(file);
-		ObjectInputStream o = new ObjectInputStream(f);
-
-		
-		user = (UserDTO) o.readObject(); // ved ikke hvordan man finde den spesifike user... :(
-		
-		o.close();
-		f.close();
-		
-		} catch (FileNotFoundException e) {
-			System.out.println("File not found");
-		} catch (IOException e) {
-			System.out.println("Error initializing stream");
-		}catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return user;
+		return binarysearch(userStoreList, 0, userStoreList.size() - 1, userId);
 	}
 
 	@Override
 	public List<UserDTO> getUserList() throws DALException {
-		return null;
+		return userStoreList;
 	}
 
 	@Override
 	public void createUser(UserDTO user) throws DALException {
-		
-		try {
-			FileOutputStream f = new FileOutputStream(file);
-			ObjectOutputStream o = new ObjectOutputStream(f);
-
-			o.writeObject(user);
-
-			o.close();
-			f.close();
-			
-		} catch (FileNotFoundException e) {
-			System.out.println("File not found");
-		} catch (IOException e) {
-			System.out.println("Error initializing stream");
-		} 
-
+		userStoreList.add(user);
+		Collections.sort(userStoreList);
 	}
 
 	@Override
 	public void updateUser(UserDTO user) throws DALException {
 
+		Collections.sort(userStoreList);
 	}
 
 	@Override
 	public void deleteUser(int userId) throws DALException {
-
+		userStoreList.remove(binarysearch(userStoreList, 0, userStoreList.size() - 1, userId));
 	}
 
 }
