@@ -4,17 +4,20 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Data implements IData {
+public class NPData implements IData {
 
-	private final List<UserDTO> userStore;
+	private final List<UserDTO> userStoreList;
 
-	public Data() {
-		userStore = new ArrayList<>();
+	public NPData() {
+		userStoreList = new ArrayList<>();
 
-		userStore.add(new UserDTO(2, "FM01", "FM", "Foreman"));
-		userStore.add(new UserDTO(0, "Admin", "ADM", "Admin"));
-		userStore.add(new UserDTO(3, "OP01", "OP", "Operator"));
-		userStore.add(new UserDTO(1, "PHMC01", "PHMC", "Pharmacist"));
+		userStoreList.add(new UserDTO(2, "FM01", "FM", "Foreman"));
+		userStoreList.add(new UserDTO(0, "Admin", "ADM", "Admin"));
+		userStoreList.add(new UserDTO(3, "OP01", "OP", "Operator"));
+		userStoreList.add(new UserDTO(1, "PHMC01", "PHMC", "Pharmacist"));
+		
+		/* TEMP */
+		Collections.sort(userStoreList);
 	}
 
 	private UserDTO binarysearch(List<UserDTO> list, int low, int high, int userId) throws DALException {
@@ -32,34 +35,37 @@ public class Data implements IData {
 
 		throw new DALException("User with userId (" + userId + ") not found in the list");
 	}
-	
-	private List<UserDTO> mergesort() {
-		
-	}
 
 	@Override
 	public UserDTO getUser(int userId) throws DALException {
-		return binarysearch(userStore, 0, userStore.size() - 1, userId);
+		return binarysearch(userStoreList, 0, userStoreList.size() - 1, userId);
 	}
 
 	@Override
 	public List<UserDTO> getUserList() throws DALException {
-		return userStore;
+		return userStoreList;
 	}
 
 	@Override
 	public void createUser(UserDTO user) throws DALException {
-		userStore.add(user);
+		userStoreList.add(user);
+		Collections.sort(userStoreList);
 	}
 
 	@Override
 	public void updateUser(UserDTO user) throws DALException {
-
+		
+		/*
+		 * Hvis brugeren bliver opdateret, 
+		 * så sortere vi igen, da userId eventuelt
+		 * er blevet opdateret.
+		 */
+		Collections.sort(userStoreList);
 	}
 
 	@Override
 	public void deleteUser(int userId) throws DALException {
-		userStore.remove(binarysearch(userStore, 0, userStore.size() - 1, userId));
+		userStoreList.remove(binarysearch(userStoreList, 0, userStoreList.size() - 1, userId));
 	}
 
 }

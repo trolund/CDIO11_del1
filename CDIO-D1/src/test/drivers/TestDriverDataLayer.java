@@ -1,13 +1,12 @@
 package test.drivers;
 
-import dal.Data;
+import dal.NPData;
 import dal.IData;
 
 public class TestDriverDataLayer {
 
 	public static void main(String[] args) {
-		IData d = new Data();
-
+		IData d = new NPData();
 		
 	}
 
