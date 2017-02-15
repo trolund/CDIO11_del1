@@ -1,4 +1,4 @@
-package test.data;
+package test.logic;
 
 import data.IData;
 import data.IData.DALException;
