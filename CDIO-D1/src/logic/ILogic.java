@@ -15,5 +15,8 @@ public interface ILogic {
 			super(msg);
 		}
 	}
+	
+	public boolean verifyPassword(String pass);
+	
 
 }

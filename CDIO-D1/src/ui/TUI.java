@@ -69,16 +69,25 @@ public class TUI implements ITUI {
 			userName = input.nextLine();
 		} while (userName == null);
 		
-		
 		String password;
 		do {
-			print(languageHandler.enterUserNameMessage, false);
+			print(languageHandler.enterPasswordMessage, false);
 			password = input.nextLine();
-		} while (password == null );
+		} while (!logic.verifyPassword(password));
 		
-		/*
-		 * osv.....
-		 */
+		
+		String ini;
+		do {
+			print(languageHandler.enterIniMessage, false);
+			ini = input.nextLine();
+		} while (ini == null);
+		
+		String role;
+		do {
+			print(languageHandler.enterRoleMessage, false);
+			role = input.nextLine();
+		} while (role == null);
+
 	}
 
 	@Override
