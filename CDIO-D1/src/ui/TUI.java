@@ -68,20 +68,19 @@ public class TUI implements ITUI {
 			print(languageHandler.enterUserNameMessage, false);
 			userName = input.nextLine();
 		} while (userName == null);
-		
+
 		String password;
 		do {
 			print(languageHandler.enterPasswordMessage, false);
 			password = input.nextLine();
 		} while (!logic.verifyPassword(password));
-		
-		
+
 		String ini;
 		do {
 			print(languageHandler.enterIniMessage, false);
 			ini = input.nextLine();
 		} while (ini == null);
-		
+
 		String role;
 		do {
 			print(languageHandler.enterRoleMessage, false);
@@ -97,9 +96,6 @@ public class TUI implements ITUI {
 		} else {
 			System.out.print(message);
 		}
-		
-		
-		
 	}
 
 }

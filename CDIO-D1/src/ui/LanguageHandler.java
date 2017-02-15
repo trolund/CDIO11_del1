@@ -18,6 +18,7 @@ public class LanguageHandler {
 									 + "| Skift datalag    6 |\n"
 									 + "| Afslut           0 |\n"
 									 + "\\--------------------/\n";
+	
 	public final String commandMessage = "Kommando: ";
 	public final String invalidCommandMessage = "Ugyldig kommando.";
 	public final String quitMessage = "Lukker administrationsmodul...";
@@ -25,7 +26,7 @@ public class LanguageHandler {
 	public final String enterCprMessage = "Indtast CPR: ";
 	public final String enterUserIdMessage = "Indtast bruger id: ";
 	public final String enterUserNameMessage = "Indtast brugernavn: ";
-	public final String enterPasswordMessage = "Indtast Password: ";
+	public final String enterPasswordMessage = "Indtast password: ";
 	public final String enterIniMessage = "Indtast initialer: ";
 	public final String enterRoleMessage = "Indtast rolle: ";
 
