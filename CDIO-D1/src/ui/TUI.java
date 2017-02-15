@@ -63,6 +63,19 @@ public class TUI implements ITUI {
 			input.nextLine();
 		} while (userId == -1 || userId < 11 || userId > 99);
 
+		String userName;
+		do {
+			print(languageHandler.enterUserNameMessage, false);
+			userName = input.nextLine();
+		} while (userName == null);
+		
+		
+		String password;
+		do {
+			print(languageHandler.enterUserNameMessage, false);
+			password = input.nextLine();
+		} while (password == null );
+		
 		/*
 		 * osv.....
 		 */
@@ -75,6 +88,9 @@ public class TUI implements ITUI {
 		} else {
 			System.out.print(message);
 		}
+		
+		
+		
 	}
 
 }
