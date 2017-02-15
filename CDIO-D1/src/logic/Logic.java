@@ -1,6 +1,8 @@
 package logic;
 
 import data.IData;
+import data.IData.DALException;
+import data.UserDTO;
 
 public class Logic implements ILogic {
 
@@ -11,8 +13,8 @@ public class Logic implements ILogic {
 	}
 
 	@Override
-	public void createUser() {
-
+	public void createUser(int userId, String cpr, String userName, String password, String ini, String role) throws DALException {
+		data.createUser(new UserDTO(cpr, userId, userName,password, ini, role));
 	}
 
 	public boolean verifyPassword(String password) {
@@ -23,7 +25,7 @@ public class Logic implements ILogic {
 		}
 	}
 
-	private int katCount(String password) { // mangler tal tjek
+	private int katCount(String password) { 
 		int count = 0;
 
 		for (int i = password.length() - 1; i >= 0; i--) { // tjek for store bogstav kategori
@@ -57,6 +59,13 @@ public class Logic implements ILogic {
 		}
 
 		return count;
+	}
+
+	
+	
+	@Override
+	public String showUsers() throws DALException {
+		return data.getUserList().toString();
 	}
 
 }

@@ -52,10 +52,6 @@ public class NPData implements IData {
 
 	@Override
 	public void updateUser(UserDTO user) throws DALException {
-	
-		
-		
-		
 		Collections.sort(userStoreList);
 	}
 
@@ -63,5 +59,7 @@ public class NPData implements IData {
 	public void deleteUser(int userId) throws DALException {
 		userStoreList.remove(binarysearch(userStoreList, 0, userStoreList.size() - 1, userId));
 	}
+	
+	
 
 }

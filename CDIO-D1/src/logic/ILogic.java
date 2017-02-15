@@ -1,8 +1,10 @@
 package logic;
 
+import data.IData.DALException;
+
 public interface ILogic {
 	
-	void createUser();
+	void createUser(int userId, String cpr, String userName, String password, String ini, String role) throws DALException;
 	
 	public class IllegalInputException extends IllegalArgumentException {
 		private static final long serialVersionUID = 1L;
@@ -17,6 +19,8 @@ public interface ILogic {
 	}
 	
 	public boolean verifyPassword(String pass);
+
+	public String showUsers() throws DALException;
 	
 
 }

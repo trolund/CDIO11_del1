@@ -2,6 +2,7 @@ package ui;
 
 import java.util.Scanner;
 
+import data.IData.DALException;
 import logic.ILogic;
 
 public class TUI implements ITUI {
@@ -29,11 +30,21 @@ public class TUI implements ITUI {
 				System.exit(0);
 				break;
 			case 1:
+				
 				break;
 			case 2:
-				createUser();
+				try {
+					createUser();
+				} catch (DALException e) {
+					e.printStackTrace();
+				}
 				break;
 			case 3:
+				try {
+					showUsers();
+				} catch (DALException e1) {
+					e1.printStackTrace();
+				}
 				break;
 			case 4:
 				break;
@@ -48,8 +59,12 @@ public class TUI implements ITUI {
 		}
 	}
 
+	private void showUsers() throws DALException {
+		System.out.println(logic.showUsers());
+	}
+
 	@Override
-	public void createUser() {
+	public void createUser() throws DALException {
 		String cpr;
 		do {
 			print(languageHandler.enterCprMessage, false);
@@ -86,6 +101,8 @@ public class TUI implements ITUI {
 			print(languageHandler.enterRoleMessage, false);
 			role = input.nextLine();
 		} while (role == null);
+		
+		logic.createUser(userId, cpr, userName, password, ini, role);
 
 	}
 
