@@ -47,14 +47,22 @@ public class Logic implements ILogic {
 	        }
 	    }
 		
-		String specialChars = "/*!@#$%^&*()\"{}_[]|\\?/<>,.";
-		
-	     for (int i = 0; i < pass.length(); i++) {
-	         if (specialChars.contains(pass.substring(i, 1))) {
+		for(int i = pass.length()-1 ; i >= 0; i--) { // tjek for specialtegn kategori
+			int as = pass.charAt(i);
+	        if(as >= 32 && as <= 64 || as >= 91 && as <= 96 || as >= 123 && as <= 126){
 	            count++;
 	            break;
-	         }
-	     }
+	        }
+	    }
+		
+		for(int i = pass.length()-1 ; i >= 0; i--) { // tjek for tal kategori
+			int as = pass.charAt(i);
+	        if(as >= 48 && as <= 57){
+	            count++;
+	            break;
+	        }
+	    }
+		
 	     
 	     
 		return count;
