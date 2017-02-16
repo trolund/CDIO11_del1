@@ -18,11 +18,18 @@ public class TUI implements ITUI {
 	}
 
 	public void initTUI() {
-		while (true) {
-			print(languageHandler.menuMessage, true);
+		print(languageHandler.menuMessage, true);
 
-			print(languageHandler.commandMessage, false);
-			int command = input.nextInt();
+		while (true) {
+			int command = -1;
+			do {
+				print(languageHandler.commandMessage, false);
+				while (!input.hasNextInt()) {
+					print(languageHandler.commandMessage, false);
+					input.next();
+				}
+				command = input.nextInt();
+			} while (command == -1);
 
 			switch (command) {
 			case 0:
@@ -30,7 +37,7 @@ public class TUI implements ITUI {
 				System.exit(0);
 				break;
 			case 1:
-					
+				print(languageHandler.menuMessage, true);
 				break;
 			case 2:
 				/* Hvor skal denne Exception catches? */
@@ -103,7 +110,7 @@ public class TUI implements ITUI {
 			print(languageHandler.enterRoleMessage, false);
 			role = input.nextLine();
 		} while (role == null);
-		
+
 		logic.createUser(userId, cpr, userName, password, ini, role);
 	}
 

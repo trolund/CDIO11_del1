@@ -5,6 +5,16 @@ import java.util.List;
 public class PDBData implements IData {
 
 	@Override
+	public void saveUsers() throws DALException {
+		
+	}
+
+	@Override
+	public void loadUsers() throws DALException {
+		
+	}
+
+	@Override
 	public UserDTO getUser(int userId) throws DALException {
 		return null;
 	}

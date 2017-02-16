@@ -7,8 +7,7 @@ import ui.TUI;
 public class Main {
 
 	public static void main(String[] args) {
-		TUI tui = new TUI(new Logic(new NPData()));
-		tui.initTUI();
+		new TUI(new Logic(new NPData())).initTUI();
 	}
 
 }

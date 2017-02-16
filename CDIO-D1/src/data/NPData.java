@@ -11,11 +11,30 @@ public class NPData implements IData {
 	public NPData() {
 		userStoreList = new ArrayList<>();
 
+		/* Test data */
 		userStoreList.add(new UserDTO("0123", 2, "FM01", "pass0123", "FM", "Foreman"));
 		userStoreList.add(new UserDTO("0122", 0, "Admin", "pass0122", "ADM", "Admin"));
 		userStoreList.add(new UserDTO("0121", 3, "OP01", "pass0121", "OP", "Operator"));
 		userStoreList.add(new UserDTO("0120", 1, "PHMC01", "pass0121", "PHMC", "Pharmacist"));
 		Collections.sort(userStoreList);
+	}
+
+	/**
+	 * This method are not used in this 
+	 * data layer implementation.
+	 */
+	@Override
+	public void loadUsers() throws DALException {
+
+	}
+
+	/**
+	 * This method are not used in this 
+	 * data layer implementation.
+	 */
+	@Override
+	public void saveUsers() throws DALException {
+
 	}
 
 	private UserDTO binarysearch(List<UserDTO> list, int low, int high, int userId) throws DALException {
@@ -59,7 +78,5 @@ public class NPData implements IData {
 	public void deleteUser(int userId) throws DALException {
 		userStoreList.remove(binarysearch(userStoreList, 0, userStoreList.size() - 1, userId));
 	}
-	
-	
 
 }

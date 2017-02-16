@@ -63,7 +63,11 @@ public class Logic implements ILogic {
 
 	@Override
 	public String showUsers() throws DALException {
-		return data.getUserList().toString();
+		StringBuilder sb = new StringBuilder();
+		sb.append("\n/--------------------------- Brugere ["+ data.getUserList().size() + "] ---------------------------\\\n");
+		for (int i = 0; i < data.getUserList().size(); i++)
+			sb.append(i + ": " + data.getUserList().get(i) + "\n");
+		return sb.toString();
 	}
 
 }
