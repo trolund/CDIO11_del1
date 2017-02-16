@@ -14,7 +14,7 @@ public class Logic implements ILogic {
 
 	@Override
 	public void createUser(int userId, String cpr, String userName, String password, String ini, String role) throws DALException {
-		data.createUser(new UserDTO(cpr, userId, userName,password, ini, role));
+		data.createUser(new UserDTO(cpr, userId, userName, password, ini, role));
 	}
 
 	public boolean verifyPassword(String password) {
@@ -25,7 +25,7 @@ public class Logic implements ILogic {
 		}
 	}
 
-	private int katCount(String password) { 
+	private int katCount(String password) {
 		int count = 0;
 
 		for (int i = password.length() - 1; i >= 0; i--) { // tjek for store bogstav kategori
@@ -61,8 +61,6 @@ public class Logic implements ILogic {
 		return count;
 	}
 
-	
-	
 	@Override
 	public String showUsers() throws DALException {
 		return data.getUserList().toString();
