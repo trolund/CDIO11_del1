@@ -12,10 +12,10 @@ public class NPData implements IData {
 		userStoreList = new ArrayList<>();
 
 		/* Test data */
-		userStoreList.add(new UserDTO("0123", 2, "FM01", "pass0123", "FM", "Foreman"));
-		userStoreList.add(new UserDTO("0122", 0, "Admin", "pass0122", "ADM", "Admin"));
-		userStoreList.add(new UserDTO("0121", 3, "OP01", "pass0121", "OP", "Operator"));
-		userStoreList.add(new UserDTO("0120", 1, "PHMC01", "pass0121", "PHMC", "Pharmacist"));
+		userStoreList.add(new UserDTO("0123", 12, "FM01", "pass0123", "FM", "Foreman"));
+		userStoreList.add(new UserDTO("0122", 15, "Admin", "pass0122", "ADM", "Admin"));
+		userStoreList.add(new UserDTO("0121", 13, "OP01", "pass0121", "OP", "Operator"));
+		userStoreList.add(new UserDTO("0120", 14, "PHMC01", "pass0121", "PHMC", "Pharmacist"));
 		Collections.sort(userStoreList);
 	}
 

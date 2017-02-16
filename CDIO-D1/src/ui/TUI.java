@@ -58,6 +58,11 @@ public class TUI implements ITUI {
 			case 4:
 				break;
 			case 5:
+				try {
+					deleteUser();
+				} catch (DALException e) {
+					e.printStackTrace();
+				}
 				break;
 			case 6:
 				break;
@@ -68,16 +73,12 @@ public class TUI implements ITUI {
 		}
 	}
 
-	private void showUsers() throws DALException {
-		print(logic.showUsers(), true);
-	}
-
 	@Override
 	public void createUser() throws DALException {
 		String cpr;
 		do {
 			print(languageHandler.enterCprMessage, false);
-			cpr = input.nextLine();
+			cpr = input.next();
 		} while (cpr == null);
 
 		int userId = -1;
@@ -112,6 +113,39 @@ public class TUI implements ITUI {
 		} while (role == null);
 
 		logic.createUser(userId, cpr, userName, password, ini, role);
+	}
+
+	@Override
+	public void updateUser() throws DALException {
+
+	}
+
+	@Override
+	public void deleteUser() throws DALException {
+		int userId = -1;
+		do {
+			print(languageHandler.enterUserIdMessage, false);
+			userId = input.nextInt();
+			input.nextLine();
+		} while (userId == -1 || userId < 11 || userId > 99);
+	
+		/* Skal vi validere om en bruger med user id'en findes her? */
+		
+		String confirm = "";
+		do {
+			print(languageHandler.userDeletionMessage(userId), false);
+			confirm = input.next();
+		} while (!confirm.equalsIgnoreCase("y") && !confirm.equalsIgnoreCase("n"));
+		
+		if (confirm.equalsIgnoreCase("y")) {
+			logic.deleteUser(userId);
+			print("Bruger [" + userId + "] er slettet. ", true);
+		}
+		
+	}
+
+	private void showUsers() throws DALException {
+		print(logic.showUsers(), true);
 	}
 
 	@Override

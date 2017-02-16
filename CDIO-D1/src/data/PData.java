@@ -90,7 +90,7 @@ public class PData implements IData {
 			return binarysearch(list, mid + 1, high, userId);
 		}
 
-		throw new DALException("User with userId (" + userId + ") not found in the list");
+		throw new DALException("User with userId [" + userId + "] not found in the list");
 	}
 
 	@Override
@@ -117,6 +117,7 @@ public class PData implements IData {
 	@Override
 	public void deleteUser(int userId) throws DALException {
 		userStoreList.remove(binarysearch(userStoreList, 0, userStoreList.size() - 1, userId));
+		Collections.sort(userStoreList);
 	}
 
 }

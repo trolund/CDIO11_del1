@@ -17,6 +17,26 @@ public class Logic implements ILogic {
 		data.createUser(new UserDTO(cpr, userId, userName, password, ini, role));
 	}
 
+	@Override
+	public void updateUser(int userId)  throws DALException {
+		
+	}
+
+	@Override
+	public void deleteUser(int userId) throws DALException {
+		data.deleteUser(userId);
+	}
+
+	@Override
+	public String showUsers() throws DALException {
+		StringBuilder sb = new StringBuilder();
+		sb.append("\n/----------------------------- Brugere [" + data.getUserList().size() + "] -----------------------------\\\n");
+		for (int i = 0; i < data.getUserList().size(); i++)
+			sb.append("| " + i + ": " + data.getUserList().get(i) + "\n");
+		sb.append("\\-----------------------------------------------------------------------/\n");
+		return sb.toString();
+	}
+	
 	public boolean verifyPassword(String password) {
 		if (password.length() >= 6 && katCount(password) >= 3) {
 			return true;
@@ -59,15 +79,6 @@ public class Logic implements ILogic {
 		}
 
 		return count;
-	}
-
-	@Override
-	public String showUsers() throws DALException {
-		StringBuilder sb = new StringBuilder();
-		sb.append("\n/--------------------------- Brugere ["+ data.getUserList().size() + "] ---------------------------\\\n");
-		for (int i = 0; i < data.getUserList().size(); i++)
-			sb.append(i + ": " + data.getUserList().get(i) + "\n");
-		return sb.toString();
 	}
 
 }

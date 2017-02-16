@@ -19,19 +19,23 @@ public class LanguageHandler {
 									  "| Afslut           0 |\n" + 
 									  "\\--------------------/\n";
 
-	private final String messageUserSuffix = " > ";
+	private final String messageUserSuffix = ": ";
 	private final String messageServerPrefix = "<< ";
 	
 	public final String commandMessage = "Kommando" + messageUserSuffix;
 	public final String invalidCommandMessage = messageServerPrefix + "Ugyldig kommando.";
 	public final String quitMessage = messageServerPrefix + "Lukker administrationsmodul...";
 
-	public final String enterCprMessage = "Indtast CPR " + messageUserSuffix;
-	public final String enterUserIdMessage = "Indtast bruger id " + messageUserSuffix;
-	public final String enterUserNameMessage = "Indtast brugernavn " + messageUserSuffix;;
-	public final String enterPasswordMessage = "Indtast password " + messageUserSuffix;;
-	public final String enterIniMessage = "Indtast initialer " + messageUserSuffix;;
-	public final String enterRoleMessage = "Indtast rolle " + messageUserSuffix;
+	public final String enterCprMessage = "Indtast CPR" + messageUserSuffix;
+	public final String enterUserIdMessage = "Indtast bruger id" + messageUserSuffix;
+	public final String enterUserNameMessage = "Indtast brugernavn" + messageUserSuffix;;
+	public final String enterPasswordMessage = "Indtast password" + messageUserSuffix;;
+	public final String enterIniMessage = "Indtast initialer" + messageUserSuffix;;
+	public final String enterRoleMessage = "Indtast rolle" + messageUserSuffix;
+	
+	public final String userDeletionMessage(int userId) {
+		return "Slet bruger med id [" + userId + "] (y/n)" + messageUserSuffix;
+	}
 
 	private LanguageHandler() {
 
