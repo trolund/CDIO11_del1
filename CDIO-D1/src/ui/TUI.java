@@ -30,9 +30,10 @@ public class TUI implements ITUI {
 				System.exit(0);
 				break;
 			case 1:
-				
+					
 				break;
 			case 2:
+				/* Hvor skal denne Exception catches? */
 				try {
 					createUser();
 				} catch (DALException e) {
@@ -40,6 +41,7 @@ public class TUI implements ITUI {
 				}
 				break;
 			case 3:
+				/* Hvor skal denne Exception catches? */
 				try {
 					showUsers();
 				} catch (DALException e1) {
@@ -60,7 +62,7 @@ public class TUI implements ITUI {
 	}
 
 	private void showUsers() throws DALException {
-		System.out.println(logic.showUsers());
+		print(logic.showUsers(), true);
 	}
 
 	@Override
@@ -103,7 +105,6 @@ public class TUI implements ITUI {
 		} while (role == null);
 		
 		logic.createUser(userId, cpr, userName, password, ini, role);
-
 	}
 
 	@Override
