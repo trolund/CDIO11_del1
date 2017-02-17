@@ -55,12 +55,12 @@ public class PData implements IData {
 				/*
 				 * What happens here? Stupid warning.
 				 */
-				userStoreList = ((ArrayList<UserDTO>) inObj);
+					userStoreList = ((ArrayList<UserDTO>) inObj);
 			} else {
 				throw new DALException("Wrong object in file");
 			}
 		} catch (FileNotFoundException e) {
-			//No problem - just returning empty userstore
+			//No problem - just returning empty userStoreList
 		} catch (IOException e) {
 			throw new DALException("Error while reading disk!", e);
 		} catch (ClassNotFoundException e) {

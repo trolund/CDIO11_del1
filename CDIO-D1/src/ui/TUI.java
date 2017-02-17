@@ -117,6 +117,12 @@ public class TUI implements ITUI {
 
 	@Override
 	public void updateUser() throws DALException {
+		
+		/*
+		 * Først find ud af hvad der skal opdateres... switch måske?
+		 * 
+		 * Dertil brug setters til at sætte den nye værdi.
+		 */
 
 	}
 
