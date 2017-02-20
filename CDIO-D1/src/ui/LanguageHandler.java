@@ -10,31 +10,29 @@ public class LanguageHandler {
 									  "|--------------------|\n" + 
 									  "| Kommando        ID |\n" + 
 									  "|--------------------|\n" + 
-									  "| Vis menu         1 |\n" + //slet denne
-									  "| Opret bruger     2 |\n" + 
-									  "| Vis brugere      3 |\n" + 
-									  "| Opdatér bruger   4 |\n" + 
-									  "| Slet bruger      5 |\n" +
-									  "| Skift datalag    6 |\n" + 
+									  "| Opret bruger     1 |\n" + 
+									  "| Vis brugere      2 |\n" + 
+									  "| Opdatér bruger   3 |\n" + 
+									  "| Slet bruger      4 |\n" +
+									  "| Skift datalag    5 |\n" + 
 									  "| Afslut           0 |\n" + 
 									  "\\--------------------/\n";
 	
 
 	public final String updateMessage = "\n/--------------------\\\n" + 
-										"| Updater bruger     |\n" + 
+										"| Updatér bruger     |\n" + 
 										"|--------------------|\n" + 
 										"| Kommando        ID |\n" + 
 										"|--------------------|\n" + 
-										"| CPR		        1 |\n" +
+										"| CPR              1 |\n" +
 										"| Bruger id        2 |\n" + 
 										"| Brugernavn       3 |\n" + 
 										"| Adgangskode      4 |\n" + 
 										"| initialer        5 |\n" +
-										"| Tilføje rolle    6 |\n" + 
+										"| Tilføj rolle     6 |\n" + 
 										"| Slet rolle       7 |\n" +
 										"| Gå tilbage       0 |\n" +
 										"\\-------------------/\n";
-
 
 	private final String messageUserSuffix = ": ";
 	private final String messageServerPrefix = "<< ";

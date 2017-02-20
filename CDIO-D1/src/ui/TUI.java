@@ -135,8 +135,6 @@ public class TUI implements ITUI {
 			int action = input.nextInt();
 
 			switch (action) {
-			case 0:
-				break;
 			case 1:
 				print("Indtast nyt cpr", true);
 				String cpr = input.next();
@@ -176,15 +174,7 @@ public class TUI implements ITUI {
 				print(languageHandler.invalidCommandMessage, true);
 				break;
 			}
-
 		}
-
-		/*
-		 * Først find ud af hvad der skal opdateres... switch måske?
-		 * 
-		 * Dertil brug setters til at sætte den nye værdi.
-		 */
-
 	}
 
 	@Override
@@ -196,8 +186,6 @@ public class TUI implements ITUI {
 			input.nextLine();
 		} while (userId == -1 || userId < 11 || userId > 99 && logic.userExist(userId));
 
-		/* Skal vi validere om en bruger med user id'en findes her? */
-
 		String confirm = "";
 		do {
 			print(languageHandler.userDeletionMessage(userId), false);
@@ -208,7 +196,6 @@ public class TUI implements ITUI {
 			logic.deleteUser(userId);
 			print("Bruger [" + userId + "] er slettet. ", true);
 		}
-
 	}
 
 	private void showUsers() throws DALException {
