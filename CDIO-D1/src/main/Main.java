@@ -1,6 +1,5 @@
 package main;
 
-import data.NPData;
 import data.PData;
 import logic.Logic;
 import ui.TUI;

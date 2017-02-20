@@ -29,11 +29,10 @@ public class TUI implements ITUI {
 				System.exit(0);
 				break;
 			case 1:
-				// SKRIV HVILKEN FEJL DER SKER HER!!!!!!
 				try {
 					createUser();
 				} catch (DALException e) {
-
+					printErr(languageHandler.userNotCreatedErrMessage, true);
 				}
 				break;
 			case 2:
@@ -42,15 +41,14 @@ public class TUI implements ITUI {
 				try {
 					updateUser();
 				} catch (DALException e) {
-					e.printStackTrace();
+					printErr(languageHandler.userNotUpdatedErrMessage, true);
 				}
 				break;
 			case 4:
 				try {
 					deleteUser();
 				} catch (DALException e) {
-					System.out.println("Brugeren findes ikke.");
-					e.printStackTrace();
+					printErr(languageHandler.userNotDeletedErrMessage, true);
 				}
 				break;
 			case 5:
@@ -153,11 +151,6 @@ public class TUI implements ITUI {
 			userId = input.nextInt();
 			input.nextLine();
 		} while (userId == -1 || userId < 11 || userId > 99);
-		
-		/*
-		 * if (!logic.userExists(userId)) { throw new
-		 * DALException("Brugeren findes ikke!"); }
-		 */
 
 		String confirm = "";
 		do {

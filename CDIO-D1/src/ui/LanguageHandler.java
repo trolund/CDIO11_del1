@@ -58,14 +58,10 @@ public class LanguageHandler {
 	public final String enterPasswordMessage = "Indtast password" + messageUserSuffix;;
 	public final String enterIniMessage = "Indtast initialer" + messageUserSuffix;;
 	public final String enterRoleMessage = "Indtast rolle" + messageUserSuffix;
-	
-	public final String enterNewCprMessage = "Indtast nyt CPR" + messageUserSuffix;
-	public final String enterNewUserIdMessage = "Indtast nyt bruger id" + messageUserSuffix;
-	public final String enterNewUserNameMessage = "Indtast nyt brugernavn" + messageUserSuffix;;
-	public final String enterNewPasswordMessage = "Indtast nyt password" + messageUserSuffix;;
-	public final String enterNewIniMessage = "Indtast nye initialer" + messageUserSuffix;;
-	public final String enterAddRoleMessage = "Tilføj rolle" + messageUserSuffix;
-	public final String enterRemoveRoleMessage = "Slet rolle" + messageUserSuffix;
+
+	public final String userNotCreatedErrMessage = messageServerPrefix + "Brugeren blev ikke oprettet!";
+	public final String userNotUpdatedErrMessage = messageServerPrefix + "Brugeren blev ikke opdateret!";
+	public final String userNotDeletedErrMessage = messageServerPrefix + "Brugeren blev ikke slettet!";
 	
 	public final String userDeletionMessage(int userId) {
 		return messageServerPrefix + "Slet bruger med id [" + userId + "] (y/n)" + messageUserSuffix;
@@ -73,10 +69,6 @@ public class LanguageHandler {
 	
 	public final String userCreatedMessage (int userId) {
 		return messageServerPrefix + "Bruger med id [" + userId + "] er nu oprettet.";
-	}
-	
-	public final String userNotFoundMessage(int userId) {
-		return messageServerPrefix + "Bruger med id [" + userId + "] kunne ikke findes.";
 	}
 
 	private LanguageHandler() {

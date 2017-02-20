@@ -18,7 +18,7 @@ public class Logic implements ILogic {
 	}
 
 	@Override
-	public void updateUser(UserDTO user) throws DALException{
+	public void updateUser(UserDTO user) throws DALException {
 		data.updateUser(user);
 	}
 
@@ -26,16 +26,15 @@ public class Logic implements ILogic {
 	public void deleteUser(int userId) throws DALException {
 		data.deleteUser(userId);
 	}
-/*
+
 	public String showUsers() throws DALException {
 		StringBuilder sb = new StringBuilder();
-		sb.append("\n/----------------------------- Brugere [" + data.getUserList().size() + "] -----------------------------\\\n");
+		sb.append("\n/----------------------------- Brugere [" + data.getUserList().size()
+				+ "] -----------------------------\\\n");
 		for (int i = 0; i < data.getUserList().size(); i++)
-			sb.append("| " + (i+1) + ": " + data.getUserList().get(i) + "\n");
+			sb.append("| " + (i + 1) + ": " + data.getUserList().get(i) + "\n");
 		sb.append("\\-----------------------------------------------------------------------/\n");
 		return sb.toString();
 	}
-	*/
-	
 
 }
