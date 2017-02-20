@@ -118,53 +118,53 @@ public class TUI implements ITUI {
 
 	@Override
 	public void updateUser() throws DALException {
-		print(languageHandler.enterUserIdMessage, true);
+		print(languageHandler.enterUserIdMessage, false);
 		int userId = input.nextInt();
 
 		if (!logic.userExist(userId)) {
 			print(languageHandler.userNotFoundMessage(userId), true);
 		} else {
-			print(languageHandler.updateMessage, true);
+			print(languageHandler.updateMessage, false);
 			int action = input.nextInt();
 
 			switch (action) {
 			case 1:
-				print(languageHandler.enterNewCprMessage, true);
+				print(languageHandler.enterNewCprMessage, false);
 				String newCpr = input.next();
 				logic.updateUser(userId, 1, newCpr);
 				break;
 			case 2:
-				print(languageHandler.enterNewUserIdMessage, true);
+				print(languageHandler.enterNewUserIdMessage, false);
 				String newUserId = input.next();
 				logic.updateUser(userId, 2, newUserId);
 				break;
 			case 3:
-				print(languageHandler.enterNewUserNameMessage, true);
+				print(languageHandler.enterNewUserNameMessage, false);
 				String newUserName = input.next();
 				logic.updateUser(userId, 3, newUserName);
 				break;
 			case 4:
-				print(languageHandler.enterNewPasswordMessage, true);
+				print(languageHandler.enterNewPasswordMessage, false);
 				String newPassword = input.next();
 				logic.updateUser(userId, 4, newPassword);
 				break;
 			case 5:
-				print(languageHandler.enterNewIniMessage, true);
+				print(languageHandler.enterNewIniMessage, false);
 				String newIni = input.next();
 				logic.updateUser(userId, 5, newIni);
 				break;
 			case 6:
-				print(languageHandler.enterAddRoleMessage, true);
+				print(languageHandler.enterAddRoleMessage, false);
 				String addRole = input.next();
 				logic.updateUser(userId, 6, addRole);
 				break;
 			case 7:
-				print(languageHandler.enterRemoveRoleMessage, true);
+				print(languageHandler.enterRemoveRoleMessage, false);
 				String removeRole = input.next();
 				logic.updateUser(userId, 7, removeRole);
 				break;
 			default:
-				print(languageHandler.invalidCommandMessage, true);
+				print(languageHandler.invalidCommandMessage, false);
 				break;
 			}
 		}
