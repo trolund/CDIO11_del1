@@ -100,8 +100,13 @@ public class NPData implements IData {
 			
 			if(userDTO.getUserId() == userId){
 				switch(opraton){
-				case 1: userDTO.setCpr(input);
-				case 2: int x = (int) input; userDTO.setUserId();
+				case 1: userDTO.setCpr(input); break;
+				case 2: int x = Integer.parseInt(input); userDTO.setUserId(x); break;
+				case 3: userDTO.setUserName(input); break;
+				case 4: userDTO.setPassword(input); break;
+				case 5: userDTO.setIni(input); break;
+				case 6: userDTO.addRole(input); break;
+				case 7: userDTO.removeRole(input); break;
 				}
 				
 				

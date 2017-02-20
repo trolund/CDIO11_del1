@@ -28,5 +28,6 @@ public interface IData {
 
 
 	public boolean userExist(int id) throws DALException;
+	public void updateUser(int userId, int opraton, String input) throws DALException;
 
 }

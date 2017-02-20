@@ -19,8 +19,7 @@ public class Logic implements ILogic {
 
 	@Override
 	public void updateUser(int userId, int opraton, String cpr) throws DALException{
-		
-		
+		data.updateUser(userId, opraton, cpr);
 	}
 
 	@Override
