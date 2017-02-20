@@ -98,7 +98,7 @@ public class TUI implements ITUI {
 		do {
 			print(languageHandler.enterUserNameMessage, false);
 			userName = input.nextLine();
-		} while (userName == null || userName.length() < 1 || userName.length() > 20);
+		} while (userName == null || userName.length() <=1 || userName.length() >= 21);
 
 		String password;
 		do {
