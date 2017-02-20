@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import data.IData.DALException;
+
 public class NPData implements IData {
 
 	private final List<UserDTO> userStoreList;
@@ -78,5 +80,16 @@ public class NPData implements IData {
 	public void deleteUser(int userId) throws DALException {
 		userStoreList.remove(binarysearch(userStoreList, 0, userStoreList.size() - 1, userId));
 	}
+	
+	public boolean userExist(int id) throws DALException{
+		
+		UserDTO user = binarysearch(userStoreList, 0, userStoreList.size() - 1, id);
+		if(user == null){
+			return false;
+		}
+		else{
+			return true;
+		}
+}
 
 }

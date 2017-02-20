@@ -26,6 +26,7 @@ public interface IData {
 		}
 	}
 
+
 	public boolean userExist(int id) throws DALException;
 
 }
