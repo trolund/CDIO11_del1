@@ -49,6 +49,7 @@ public class PData implements IData {
 		System.out.println("DEBUGGING: Saved to file + " + dataFile.getName() + " + successfully.");
 	}
 
+	@SuppressWarnings("unchecked")
 	public void loadUsers() throws DALException {
 		ObjectInputStream oIS = null;
 		try {
@@ -56,9 +57,6 @@ public class PData implements IData {
 			oIS = new ObjectInputStream(fIS);
 			Object inObj = oIS.readObject();
 			if (inObj.getClass().equals(ArrayList.class)) {
-				/*
-				 * What happens here? Stupid warning.
-				 */
 				userStoreList = ((ArrayList<UserDTO>) inObj);
 			} else {
 				throw new DALException("Wrong object in file");
