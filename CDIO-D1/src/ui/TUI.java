@@ -118,6 +118,7 @@ public class TUI implements ITUI {
 			role = input.nextLine();
 		} while (role == null);
 
+		print(languageHandler.userCreatedMessage(userId), true);		
 		logic.createUser(userId, cpr, userName, password, ini, role);
 	}
 

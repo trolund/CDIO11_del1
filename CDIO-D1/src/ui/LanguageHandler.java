@@ -19,20 +19,19 @@ public class LanguageHandler {
 									  "| Afslut           0 |\n" + 
 									  "\\--------------------/\n";
 	
-	public final String updateMessage = 
-			"\n/--------------------\\\n" + 
-	          "| what to change?    |\n" + 
-			  "|--------------------|\n" + 
-			  "| Kommando        ID |\n" + 
-			  "|--------------------|\n" + 
-			  "| cpr		      1 |\n" +
-			  "| userid           2 |\n" + 
-			  "| username         3 |\n" + 
-			  "| password         4 |\n" + 
-			  "| initials         5 |\n" +
-			  "| remove role      6 |\n" + 
-			  "| add role         0 |\n" + 
-			  "\\-------------------/\n";
+	public final String updateMessage = "\n/--------------------\\\n" + 
+										"| Updater bruger     |\n" + 
+										"|--------------------|\n" + 
+										"| Kommando        ID |\n" + 
+										"|--------------------|\n" + 
+										"| CPR		        1 |\n" +
+										"| Bruger id        2 |\n" + 
+										"| Brugernavn       3 |\n" + 
+										"| Adgangskode      4 |\n" + 
+										"| initialer        5 |\n" +
+										"| Tilføje rolle    6 |\n" + 
+										"| Slet rolle       7 |\n" + 
+										"\\-------------------/\n";
 
 	private final String messageUserSuffix = ": ";
 	private final String messageServerPrefix = "<< ";
@@ -40,7 +39,7 @@ public class LanguageHandler {
 	public final String commandMessage = "Kommando" + messageUserSuffix;
 	public final String invalidCommandMessage = messageServerPrefix + "Ugyldig kommando.";
 	public final String quitMessage = messageServerPrefix + "Lukker administrationsmodul...";
-
+	
 	public final String enterCprMessage = "Indtast CPR" + messageUserSuffix;
 	public final String enterUserIdMessage = "Indtast bruger id" + messageUserSuffix;
 	public final String enterUserNameMessage = "Indtast brugernavn" + messageUserSuffix;;
@@ -50,6 +49,10 @@ public class LanguageHandler {
 	
 	public final String userDeletionMessage(int userId) {
 		return "Slet bruger med id [" + userId + "] (y/n)" + messageUserSuffix;
+	}
+	
+	public final String userCreatedMessage (int userId) {
+		return "Bruger med id [" + userId + "] er nu oprettet.";
 	}
 
 	private LanguageHandler() {
