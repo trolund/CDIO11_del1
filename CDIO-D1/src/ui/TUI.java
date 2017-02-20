@@ -79,7 +79,7 @@ public class TUI implements ITUI {
 		do {
 			print(languageHandler.enterCprMessage, false);
 			cpr = input.next();
-		} while (cpr == null);
+		} while (cpr == null || cpr.length() != 10);
 
 		int userId = -1;
 		do {
@@ -92,7 +92,7 @@ public class TUI implements ITUI {
 		do {
 			print(languageHandler.enterUserNameMessage, false);
 			userName = input.nextLine();
-		} while (userName == null || userName.length() <=1 || userName.length() >= 21);
+		} while (userName == null || userName.length() <= 1 || userName.length() >= 21);
 
 		String password;
 		do {
@@ -118,53 +118,53 @@ public class TUI implements ITUI {
 
 	@Override
 	public void updateUser() throws DALException {
-		print(languageHandler.enterUserIdMessage, false);
+		print(languageHandler.enterUserIdMessage, true);
 		int userId = input.nextInt();
 
 		if (!logic.userExist(userId)) {
 			print(languageHandler.userNotFoundMessage(userId), true);
 		} else {
-			print(languageHandler.updateMessage, false);
+			print(languageHandler.updateMessage, true);
 			int action = input.nextInt();
 
 			switch (action) {
 			case 1:
-				print(languageHandler.enterNewCprMessage, false);
+				print(languageHandler.enterNewCprMessage, true);
 				String newCpr = input.next();
 				logic.updateUser(userId, 1, newCpr);
 				break;
 			case 2:
-				print(languageHandler.enterNewUserIdMessage, false);
+				print(languageHandler.enterNewUserIdMessage, true);
 				String newUserId = input.next();
 				logic.updateUser(userId, 2, newUserId);
 				break;
 			case 3:
-				print(languageHandler.enterNewUserNameMessage, false);
+				print(languageHandler.enterNewUserNameMessage, true);
 				String newUserName = input.next();
 				logic.updateUser(userId, 3, newUserName);
 				break;
 			case 4:
-				print(languageHandler.enterNewPasswordMessage, false);
+				print(languageHandler.enterNewPasswordMessage, true);
 				String newPassword = input.next();
 				logic.updateUser(userId, 4, newPassword);
 				break;
 			case 5:
-				print(languageHandler.enterNewIniMessage, false);
+				print(languageHandler.enterNewIniMessage, true);
 				String newIni = input.next();
 				logic.updateUser(userId, 5, newIni);
 				break;
 			case 6:
-				print(languageHandler.enterAddRoleMessage, false);
+				print(languageHandler.enterAddRoleMessage, true);
 				String addRole = input.next();
 				logic.updateUser(userId, 6, addRole);
 				break;
 			case 7:
-				print(languageHandler.enterRemoveRoleMessage, false);
+				print(languageHandler.enterRemoveRoleMessage, true);
 				String removeRole = input.next();
 				logic.updateUser(userId, 7, removeRole);
 				break;
 			default:
-				print(languageHandler.invalidCommandMessage, false);
+				print(languageHandler.invalidCommandMessage, true);
 				break;
 			}
 		}
@@ -177,7 +177,7 @@ public class TUI implements ITUI {
 			print(languageHandler.enterUserIdMessage, false);
 			userId = input.nextInt();
 			input.nextLine();
-		} while (  userId == -1 || userId < 11 || userId > 99 && !logic.userExist(userId));
+		} while (userId == -1 || userId < 11 || userId > 99 && !logic.userExist(userId));
 
 		String confirm = "";
 		do {
