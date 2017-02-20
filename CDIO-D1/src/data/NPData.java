@@ -97,7 +97,7 @@ public class NPData implements IData {
 	public void updateUser(int userId, int opraton, String input) throws DALException{
 		for (Iterator iterator = userStoreList.iterator(); iterator.hasNext();) {
 			UserDTO userDTO = (UserDTO) iterator.next();
-			
+
 			if(userDTO.getUserId() == userId){
 				switch(opraton){
 				case 1: userDTO.setCpr(input); break;

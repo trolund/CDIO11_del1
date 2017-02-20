@@ -194,7 +194,7 @@ public class TUI implements ITUI {
 			print(languageHandler.enterUserIdMessage, false);
 			userId = input.nextInt();
 			input.nextLine();
-		} while (userId == -1 || userId < 11 || userId > 99);
+		} while (userId == -1 || userId < 11 || userId > 99 && logic.userExist(userId));
 
 		/* Skal vi validere om en bruger med user id'en findes her? */
 
