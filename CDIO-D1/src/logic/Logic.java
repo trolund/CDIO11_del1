@@ -32,7 +32,7 @@ public class Logic implements ILogic {
 		StringBuilder sb = new StringBuilder();
 		sb.append("\n/----------------------------- Brugere [" + data.getUserList().size() + "] -----------------------------\\\n");
 		for (int i = 0; i < data.getUserList().size(); i++)
-			sb.append("| " + i + ": " + data.getUserList().get(i) + "\n");
+			sb.append("| " + (i+1) + ": " + data.getUserList().get(i) + "\n");
 		sb.append("\\-----------------------------------------------------------------------/\n");
 		return sb.toString();
 	}
@@ -79,6 +79,10 @@ public class Logic implements ILogic {
 		}
 
 		return count;
+	}
+
+	public boolean userExist(int id){
+		return data.userExist(id);
 	}
 
 }

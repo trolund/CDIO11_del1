@@ -119,5 +119,14 @@ public class PData implements IData {
 		userStoreList.remove(binarysearch(userStoreList, 0, userStoreList.size() - 1, userId));
 		Collections.sort(userStoreList);
 	}
+	
+	public boolean userExist(int id){
+		try {
+			binarysearch(userStoreList, 0, userStoreList.size() - 1, id);
+		} catch (DALException e) {
+			return false;
+		}
+			return true;
+	}
 
 }
