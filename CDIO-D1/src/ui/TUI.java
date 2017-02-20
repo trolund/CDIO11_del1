@@ -47,21 +47,22 @@ public class TUI implements ITUI {
 			case 2:
 				try {
 					showUsers();
-				} catch (DALException e1) {
-					e1.printStackTrace();
+				} catch (DALException e) {
+					e.printStackTrace();
 				}
 				break;
 			case 3:
 				try {
 					updateUser();
-				} catch (DALException e1) {
-					e1.printStackTrace();
+				} catch (DALException e) {
+					e.printStackTrace();
 				}
 				break;
 			case 4:
 				try {
 					deleteUser();
 				} catch (DALException e) {
+					System.out.println("Brugeren findes ikke.");
 					e.printStackTrace();
 				}
 				break;
@@ -177,32 +178,33 @@ public class TUI implements ITUI {
 	@Override
 	public void deleteUser() throws DALException {
 		int userId = -1;
+
+		do {
+			print(languageHandler.enterUserIdMessage, false);
+			userId = input.nextInt();
+			input.nextLine();
+		} while (userId == -1 || userId < 11 || userId > 99);
+
+		if (!logic.userExists(userId)) {
+			throw new DALException("Brugeren findes ikke!");
+		}
 		
-			do {
-				print(languageHandler.enterUserIdMessage, false);
-				userId = input.nextInt();
-				input.nextLine();
-			} while (userId == -1 || userId < 11 || userId > 99);
+		String confirm = "";
+		do {
+			print(languageHandler.userDeletionMessage(userId), false);
+			confirm = input.next();
+		} while (!confirm.equalsIgnoreCase("y") && !confirm.equalsIgnoreCase("n"));
 
-			
-			String confirm = "";
-			if(logic.userExists(userId)){
-			do {
-				print(languageHandler.userDeletionMessage(userId), false);
-				confirm = input.next();
-			} while (!confirm.equalsIgnoreCase("y") && !confirm.equalsIgnoreCase("n"));
+		if (confirm.equalsIgnoreCase("y")) {
+			logic.deleteUser(userId);
+			print("Bruger [" + userId + "] er slettet. ", true);
+		}
+	}
 
-			if (confirm.equalsIgnoreCase("y")) {
-				logic.deleteUser(userId);
-				print("Bruger [" + userId + "] er slettet. ", true);
-			}
-		} 
-			else {
-				print("Brugeren findes ikke!", true);
-			}
+	private void switchDAL() {
+		
 	}
 	
-
 	private void showUsers() throws DALException {
 		print(logic.showUsers(), true);
 	}

@@ -33,6 +33,21 @@ public class LanguageHandler {
 										"| Slet rolle       7 |\n" +
 										"| Gå tilbage       0 |\n" +
 										"\\-------------------/\n";
+	
+	public final String switchDALMessage = "\n/--------------------\\\n" + 
+											"| Updatér bruger     |\n" + 
+											"|--------------------|\n" + 
+											"| Kommando        ID |\n" + 
+											"|--------------------|\n" + 
+											"| CPR              1 |\n" +
+											"| Bruger id        2 |\n" + 
+											"| Brugernavn       3 |\n" + 
+											"| Adgangskode      4 |\n" + 
+											"| initialer        5 |\n" +
+											"| Tilføj rolle     6 |\n" + 
+											"| Slet rolle       7 |\n" +
+											"| Gå tilbage       0 |\n" +
+											"\\-------------------/\n";
 
 	private final String messageUserSuffix = ": ";
 	private final String messageServerPrefix = "<< ";
