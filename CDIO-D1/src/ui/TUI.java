@@ -3,6 +3,7 @@ package ui;
 import java.util.Scanner;
 
 import data.IData.DALException;
+import data.UserDTO;
 import logic.ILogic;
 
 public class TUI implements ITUI {
@@ -32,15 +33,10 @@ public class TUI implements ITUI {
 				try {
 					createUser();
 				} catch (DALException e) {
-					e.printStackTrace();
+
 				}
 				break;
 			case 2:
-				try {
-					showUsers();
-				} catch (DALException e) {
-					e.printStackTrace();
-				}
 				break;
 			case 3:
 				try {
@@ -58,11 +54,6 @@ public class TUI implements ITUI {
 				}
 				break;
 			case 5:
-				try {
-					switchDAL();
-				} catch (DALException e) {
-					e.printStackTrace();
-				}
 				break;
 			default:
 				print(languageHandler.invalidCommandMessage, true);
@@ -111,64 +102,45 @@ public class TUI implements ITUI {
 			role = input.nextLine();
 		} while (role == null);
 
+		UserDTO userdto = new UserDTO(cpr, userId, userName, password, ini, role);
+		logic.createUser(userdto);
+
 		print(languageHandler.userCreatedMessage(userId), true);
-		logic.createUser(userId, cpr, userName, password, ini, role);
 	}
 
 	@Override
 	public void updateUser() throws DALException {
-		print(languageHandler.enterUserIdMessage, true);
-		int userId = input.nextInt();
 
-		if (!logic.userExists(userId)) {
-			print(languageHandler.userNotFoundMessage(userId), true);
-		} else {
-			print(languageHandler.updateMessage, true);
-			int action = input.nextInt();
-
-			switch (action) {
-			case 1:
-				print(languageHandler.enterNewCprMessage, true);
-				String newCpr = input.next();
-				logic.
-				logic.updateUser(userId, 1, newCpr);
-				break;
-			case 2:
-				print(languageHandler.enterNewUserIdMessage, true);
-				String newUserId = input.next();
-				logic.updateUser(userId, 2, newUserId);
-				break;
-			case 3:
-				print(languageHandler.enterNewUserNameMessage, true);
-				String newUserName = input.next();
-				logic.updateUser(userId, 3, newUserName);
-				break;
-			case 4:
-				print(languageHandler.enterNewPasswordMessage, true);
-				String newPassword = input.next();
-				logic.updateUser(userId, 4, newPassword);
-				break;
-			case 5:
-				print(languageHandler.enterNewIniMessage, true);
-				String newIni = input.next();
-				logic.updateUser(userId, 5, newIni);
-				break;
-			case 6:
-				print(languageHandler.enterAddRoleMessage, true);
-				String addRole = input.next();
-				logic.updateUser(userId, 6, addRole);
-				break;
-			case 7:
-				print(languageHandler.enterRemoveRoleMessage, true);
-				String removeRole = input.next();
-				logic.updateUser(userId, 7, removeRole);
-				break;
-			default:
-				print(languageHandler.invalidCommandMessage, true);
-				break;
-			}
-
-		}
+		/*
+		 * print(languageHandler.enterUserIdMessage, true); int userId =
+		 * input.nextInt();
+		 * 
+		 * if (!logic.userExists(userId)) {
+		 * print(languageHandler.userNotFoundMessage(userId), true); } else {
+		 * print(languageHandler.updateMessage, true); int action =
+		 * input.nextInt();
+		 * 
+		 * switch (action) { case 1: print(languageHandler.enterNewCprMessage,
+		 * true); String newCpr = input.next(); logic. logic.updateUser(userId,
+		 * 1, newCpr); break; case 2:
+		 * print(languageHandler.enterNewUserIdMessage, true); String newUserId
+		 * = input.next(); logic.updateUser(userId, 2, newUserId); break; case
+		 * 3: print(languageHandler.enterNewUserNameMessage, true); String
+		 * newUserName = input.next(); logic.updateUser(userId, 3, newUserName);
+		 * break; case 4: print(languageHandler.enterNewPasswordMessage, true);
+		 * String newPassword = input.next(); logic.updateUser(userId, 4,
+		 * newPassword); break; case 5:
+		 * print(languageHandler.enterNewIniMessage, true); String newIni =
+		 * input.next(); logic.updateUser(userId, 5, newIni); break; case 6:
+		 * print(languageHandler.enterAddRoleMessage, true); String addRole =
+		 * input.next(); break; case 7:
+		 * print(languageHandler.enterRemoveRoleMessage, true); String
+		 * removeRole = input.next(); break; default:
+		 * print(languageHandler.invalidCommandMessage, true); break; }
+		 * 
+		 * }
+		 * 
+		 */
 
 	}
 
@@ -181,10 +153,11 @@ public class TUI implements ITUI {
 			userId = input.nextInt();
 			input.nextLine();
 		} while (userId == -1 || userId < 11 || userId > 99);
-
-		if (!logic.userExists(userId)) {
-			throw new DALException("Brugeren findes ikke!");
-		}
+		
+		/*
+		 * if (!logic.userExists(userId)) { throw new
+		 * DALException("Brugeren findes ikke!"); }
+		 */
 
 		String confirm = "";
 		do {
@@ -196,26 +169,6 @@ public class TUI implements ITUI {
 			logic.deleteUser(userId);
 			print("Bruger [" + userId + "] er slettet. ", true);
 		}
-	}
-
-	private void switchDAL() throws DALException {
-		print(languageHandler.switchDALMessage, true);
-		int command = getCommand();
-		
-		switch (command) {
-		case 1:
-			break;
-		case 2:
-			break;
-		case 3:
-			break;
-		default:
-			break;
-		}
-	}
-
-	private void showUsers() throws DALException {
-		print(logic.showUsers(), true);
 	}
 
 	private int getCommand() {
@@ -231,12 +184,19 @@ public class TUI implements ITUI {
 		return command;
 	}
 
-	@Override
-	public void print(String message, boolean newLine) {
+	private void print(String message, boolean newLine) {
 		if (newLine) {
 			System.out.println(message);
 		} else {
 			System.out.print(message);
+		}
+	}
+
+	private void printErr(String message, boolean newLine) {
+		if (newLine) {
+			System.err.println(message);
+		} else {
+			System.err.print(message);
 		}
 	}
 

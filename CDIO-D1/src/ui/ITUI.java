@@ -7,5 +7,4 @@ public interface ITUI {
 	void createUser() throws DALException;
 	void updateUser() throws DALException;
 	void deleteUser() throws DALException;
-	void print(String message, boolean newLine);
 }

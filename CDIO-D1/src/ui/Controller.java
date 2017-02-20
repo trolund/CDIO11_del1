@@ -1,6 +1,6 @@
 package ui;
 
-public class Utils {
+public class Controller {
 	
 	public boolean verifyPassword(String password) {
 		if (password.length() >= 6 && catCount(password) >= 3) {
