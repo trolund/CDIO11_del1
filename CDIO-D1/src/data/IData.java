@@ -11,8 +11,9 @@ public interface IData {
 	UserDTO getUser(int userId) throws DALException;
 	List<UserDTO> getUserList() throws DALException;
 	void createUser(UserDTO user) throws DALException;
-	void updateUser(UserDTO user) throws DALException;
+	public void updateUser(int userId, int operation, String input) throws DALException;
 	void deleteUser(int userId) throws DALException;
+	public boolean userExist(int userId) throws DALException;
 
 	public class DALException extends Exception {
 		private static final long serialVersionUID = 1L;
@@ -25,9 +26,5 @@ public interface IData {
 			super(msg);
 		}
 	}
-
-
-	public boolean userExist(int id) throws DALException;
-	public void updateUser(int userId, int opraton, String input) throws DALException;
 
 }

@@ -12,8 +12,6 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import data.IData.DALException;
-
 public class PData implements IData {
 
 	private List<UserDTO> userStoreList;
@@ -22,6 +20,14 @@ public class PData implements IData {
 	public PData() {
 		userStoreList = new ArrayList<>();
 		dataFile = new File("data.bin");
+		
+	 // shiity code hehehe
+		try {
+			loadUsers();
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -58,12 +64,12 @@ public class PData implements IData {
 				/*
 				 * What happens here? Stupid warning.
 				 */
-					userStoreList = ((ArrayList<UserDTO>) inObj);
+				userStoreList = ((ArrayList<UserDTO>) inObj);
 			} else {
 				throw new DALException("Wrong object in file");
 			}
 		} catch (FileNotFoundException e) {
-			//No problem - just returning empty userStoreList
+			// No problem - just returning empty userStoreList
 		} catch (IOException e) {
 			throw new DALException("Error while reading disk!", e);
 		} catch (ClassNotFoundException e) {
@@ -81,7 +87,8 @@ public class PData implements IData {
 	}
 
 	private UserDTO binarysearch(List<UserDTO> list, int low, int high, int userId) throws DALException {
-		if (low > high) throw new DALException("Unable to search in the list. High (" + high + "), low (" + low + ")");
+		if (low > high)
+			throw new DALException("Unable to search in the list. High (" + high + "), low (" + low + ")");
 
 		int mid = low + (high - low) / 2;
 
@@ -109,50 +116,63 @@ public class PData implements IData {
 	@Override
 	public void createUser(UserDTO user) throws DALException {
 		userStoreList.add(user);
-		Collections.sort(userStoreList);
+		sortAndSave();
 	}
 
 	@Override
-	public void updateUser(UserDTO user) throws DALException {
-		Collections.sort(userStoreList);
+	public void updateUser(int userId, int opraton, String input) throws DALException {
+		for (Iterator<UserDTO> iterator = userStoreList.iterator(); iterator.hasNext();) {
+			UserDTO userDTO = (UserDTO) iterator.next();
+
+			if (userDTO.getUserId() == userId) {
+				switch (opraton) {
+				case 1:
+					userDTO.setCpr(input);
+					break;
+				case 2:
+					int x = Integer.parseInt(input);
+					userDTO.setUserId(x);
+					break;
+				case 3:
+					userDTO.setUserName(input);
+					break;
+				case 4:
+					userDTO.setPassword(input);
+					break;
+				case 5:
+					userDTO.setIni(input);
+					break;
+				case 6:
+					userDTO.addRole(input);
+					break;
+				case 7:
+					userDTO.removeRole(input);
+					break;
+				}
+				sortAndSave();
+			}
+		}
 	}
 
 	@Override
 	public void deleteUser(int userId) throws DALException {
 		userStoreList.remove(binarysearch(userStoreList, 0, userStoreList.size() - 1, userId));
-		Collections.sort(userStoreList);
+		sortAndSave();
 	}
-	
-	public boolean userExist(int id) throws DALException{
-		
-			UserDTO user = binarysearch(userStoreList, 0, userStoreList.size() - 1, id);
-			if(user == null){
-				return false;
-			}
-			else{
-				return true;
-			}
-}
 
 	@Override
-	public void updateUser(int userId, int opraton, String input) throws DALException{
-		for (Iterator iterator = userStoreList.iterator(); iterator.hasNext();) {
-			UserDTO userDTO = (UserDTO) iterator.next();
-
-			if(userDTO.getUserId() == userId){
-				switch(opraton){
-				case 1: userDTO.setCpr(input); break;
-				case 2: int x = Integer.parseInt(input); userDTO.setUserId(x); break;
-				case 3: userDTO.setUserName(input); break;
-				case 4: userDTO.setPassword(input); break;
-				case 5: userDTO.setIni(input); break;
-				case 6: userDTO.addRole(input); break;
-				case 7: userDTO.removeRole(input); break;
-				}
-				
-				saveUsers();
-			}
+	public boolean userExist(int id) throws DALException {
+		UserDTO user = binarysearch(userStoreList, 0, userStoreList.size() - 1, id);
+		if (user == null) {
+			return false;
+		} else {
+			return true;
 		}
+	}
+	
+	private void sortAndSave() throws DALException {
+		Collections.sort(userStoreList);
+		saveUsers();
 	}
 
 }
