@@ -3,17 +3,11 @@ package data;
 import java.util.List;
 
 public interface IData {
-
-	/* P{DB}Data specific methods */
-	public void saveUsers() throws DALException;
-	public void loadUsers() throws DALException;
-
 	UserDTO getUser(int userId) throws DALException;
 	List<UserDTO> getUserList() throws DALException;
 	void createUser(UserDTO user) throws DALException;
-	public void updateUser(int userId, int operation, String input) throws DALException;
+	void updateUser(UserDTO user) throws DALException;
 	void deleteUser(int userId) throws DALException;
-	public boolean userExist(int userId) throws DALException;
 
 	public class DALException extends Exception {
 		private static final long serialVersionUID = 1L;

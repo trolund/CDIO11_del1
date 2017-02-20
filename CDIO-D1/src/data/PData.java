@@ -9,7 +9,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 public class PData implements IData {
@@ -20,18 +19,15 @@ public class PData implements IData {
 	public PData() {
 		userStoreList = new ArrayList<>();
 		dataFile = new File("data.bin");
-		
-	 // shiity code hehehe
+
 		try {
 			loadUsers();
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	@Override
-	public void saveUsers() throws DALException {
+	private void saveUsers() throws DALException {
 		ObjectOutputStream oOS = null;
 		try {
 			FileOutputStream fOS = new FileOutputStream(dataFile);
@@ -53,7 +49,6 @@ public class PData implements IData {
 		System.out.println("DEBUGGING: Saved to file + " + dataFile.getName() + " + successfully.");
 	}
 
-	@Override
 	public void loadUsers() throws DALException {
 		ObjectInputStream oIS = null;
 		try {
@@ -120,38 +115,8 @@ public class PData implements IData {
 	}
 
 	@Override
-	public void updateUser(int userId, int opraton, String input) throws DALException {
-		for (Iterator<UserDTO> iterator = userStoreList.iterator(); iterator.hasNext();) {
-			UserDTO userDTO = (UserDTO) iterator.next();
+	public void updateUser(UserDTO user) throws DALException {
 
-			if (userDTO.getUserId() == userId) {
-				switch (opraton) {
-				case 1:
-					userDTO.setCpr(input);
-					break;
-				case 2:
-					int x = Integer.parseInt(input);
-					userDTO.setUserId(x);
-					break;
-				case 3:
-					userDTO.setUserName(input);
-					break;
-				case 4:
-					userDTO.setPassword(input);
-					break;
-				case 5:
-					userDTO.setIni(input);
-					break;
-				case 6:
-					userDTO.addRole(input);
-					break;
-				case 7:
-					userDTO.removeRole(input);
-					break;
-				}
-				sortAndSave();
-			}
-		}
 	}
 
 	@Override
@@ -160,7 +125,6 @@ public class PData implements IData {
 		sortAndSave();
 	}
 
-	@Override
 	public boolean userExist(int id) throws DALException {
 		UserDTO user = binarysearch(userStoreList, 0, userStoreList.size() - 1, id);
 		if (user == null) {
@@ -169,7 +133,7 @@ public class PData implements IData {
 			return true;
 		}
 	}
-	
+
 	private void sortAndSave() throws DALException {
 		Collections.sort(userStoreList);
 		saveUsers();

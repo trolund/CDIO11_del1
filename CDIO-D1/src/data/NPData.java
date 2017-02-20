@@ -2,10 +2,7 @@ package data;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
-
-import data.IData.DALException;
 
 public class NPData implements IData {
 
@@ -14,7 +11,6 @@ public class NPData implements IData {
 	public NPData() {
 		userStoreList = new ArrayList<>();
 
-		/* Test data */
 		userStoreList.add(new UserDTO("0123", 12, "FM01", "pass0123", "FM", "Foreman"));
 		userStoreList.add(new UserDTO("0122", 15, "Admin", "pass0122", "ADM", "Admin"));
 		userStoreList.add(new UserDTO("0121", 13, "OP01", "pass0121", "OP", "Operator"));
@@ -22,26 +18,9 @@ public class NPData implements IData {
 		Collections.sort(userStoreList);
 	}
 
-	/**
-	 * This method are not used in this 
-	 * data layer implementation.
-	 */
-	@Override
-	public void loadUsers() throws DALException {
-
-	}
-
-	/**
-	 * This method are not used in this 
-	 * data layer implementation.
-	 */
-	@Override
-	public void saveUsers() throws DALException {
-
-	}
-
 	private UserDTO binarysearch(List<UserDTO> list, int low, int high, int userId) throws DALException {
-		if (low > high) throw new DALException("Unable to search in the list. High (" + high + "), low (" + low + ")");
+		if (low > high)
+			throw new DALException("Unable to search in the list. High (" + high + "), low (" + low + ")");
 
 		int mid = low + (high - low) / 2;
 
@@ -71,42 +50,15 @@ public class NPData implements IData {
 		userStoreList.add(user);
 		Collections.sort(userStoreList);
 	}
-	
-	public void updateUser(int userId, int opraton, String input) throws DALException{
-		for (Iterator iterator = userStoreList.iterator(); iterator.hasNext();) {
-			UserDTO userDTO = (UserDTO) iterator.next();
 
-			if(userDTO.getUserId() == userId){
-				switch(opraton){
-				case 1: userDTO.setCpr(input); break;
-				case 2: int x = Integer.parseInt(input); userDTO.setUserId(x); break;
-				case 3: userDTO.setUserName(input); break;
-				case 4: userDTO.setPassword(input); break;
-				case 5: userDTO.setIni(input); break;
-				case 6: userDTO.addRole(input); break;
-				case 7: userDTO.removeRole(input); break;
-				}
-			}
-		}
+	@Override
+	public void updateUser(UserDTO user) throws DALException {
+
 	}
 
 	@Override
 	public void deleteUser(int userId) throws DALException {
 		userStoreList.remove(binarysearch(userStoreList, 0, userStoreList.size() - 1, userId));
 	}
-	
-	public boolean userExist(int id) throws DALException{
-		
-		UserDTO user = binarysearch(userStoreList, 0, userStoreList.size() - 1, id);
-		if(user == null){
-			return false;
-		}
-		else{
-			return true;
-		}
-}
-	
-	
-	
 
 }
