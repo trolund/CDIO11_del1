@@ -10,6 +10,7 @@ public interface IData {
 	void deleteUser(int userId) throws DALException;
 
 	public class DALException extends Exception {
+
 		private static final long serialVersionUID = 1L;
 
 		public DALException(String msg, Throwable e) {
