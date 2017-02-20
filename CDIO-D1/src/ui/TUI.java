@@ -37,6 +37,7 @@ public class TUI implements ITUI {
 				System.exit(0);
 				break;
 			case 1:
+				// SKRIV HVILKEN FEJL DER SKER HER!!!!!!
 				try {
 					createUser();
 				} catch (DALException e) {
@@ -122,7 +123,7 @@ public class TUI implements ITUI {
 		print(languageHandler.enterUserIdMessage, true);
 		int userId = input.nextInt();
 
-		if (!logic.userExist(userId)) {
+		if (!logic.userExists(userId)) {
 			print(languageHandler.userNotFoundMessage(userId), true);
 		} else {
 			print(languageHandler.updateMessage, true);
@@ -180,7 +181,7 @@ public class TUI implements ITUI {
 			print(languageHandler.enterUserIdMessage, false);
 			userId = input.nextInt();
 			input.nextLine();
-		} while (userId == -1 || userId < 11 || userId > 99 && !logic.userExist(userId));
+		} while (userId == -1 || userId < 11 || userId > 99 && !logic.userExists(userId));
 
 		String confirm = "";
 		do {

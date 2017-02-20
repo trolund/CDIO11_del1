@@ -9,5 +9,5 @@ public interface ILogic {
 	
 	boolean verifyPassword(String password);
 	String showUsers() throws DALException;		
-	boolean userExist(int id) throws DALException;
+	boolean userExists(int id) throws DALException;
 }

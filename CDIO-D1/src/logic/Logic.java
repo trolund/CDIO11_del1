@@ -81,7 +81,7 @@ public class Logic implements ILogic {
 		return count;
 	}
 
-	public boolean userExist(int id) throws DALException{
+	public boolean userExists(int id) throws DALException{
 		return data.userExist(id);
 	}
 
