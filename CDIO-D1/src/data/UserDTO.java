@@ -93,7 +93,7 @@ public class UserDTO implements Serializable, Comparable<UserDTO> {
 
 	@Override
 	public String toString() {
-		return "User Id=" + userId + ", Username=" + userName + ", initials=" + ini + ", roles=" + roles + "]";
+		return "Bruger Id: " + userId + ", Brugernavn: " + userName + ", Initialer: " + ini + ", Roller: " + roles;
 	}
 
 }

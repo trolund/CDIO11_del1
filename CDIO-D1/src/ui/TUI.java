@@ -70,6 +70,7 @@ public class TUI implements ITUI {
 				print(languageHandler.invalidCommandMessage, true);
 				break;
 			}
+			
 		}
 	}
 
@@ -167,7 +168,9 @@ public class TUI implements ITUI {
 				print(languageHandler.invalidCommandMessage, false);
 				break;
 			}
+			
 		}
+	
 	}
 
 	@Override
