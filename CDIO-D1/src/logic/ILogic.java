@@ -8,5 +8,6 @@ public interface ILogic {
 	void deleteUser(int userId) throws DALException;
 	
 	boolean verifyPassword(String password);
-	String showUsers() throws DALException;	
+	String showUsers() throws DALException;		
+	boolean userExist(int id);
 }

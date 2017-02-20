@@ -56,6 +56,12 @@ public class TUI implements ITUI {
 				}
 				break;
 			case 4:
+				try {
+					updateUser();
+				} catch (DALException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				break;
 			case 5:
 				try {
@@ -117,6 +123,30 @@ public class TUI implements ITUI {
 
 	@Override
 	public void updateUser() throws DALException {
+		
+		System.out.println("User id:");
+		int id = input.nextInt();
+		
+		if(!logic.userExist(id)){
+			System.err.println("Brugen kunne ikke findes");
+		}
+		else{
+			print(languageHandler.updateMessage, true);
+			int action = input.nextInt();
+			
+			switch(action){
+			case 1: 
+				print("Enter new CPR", true);
+				String cpr = input.nextLine();
+				break;
+			case 2:
+				print("Enter new user id", true);
+				String iid = input.nextLine();
+			
+			}
+			
+		}
+		
 		
 		/*
 		 * Først find ud af hvad der skal opdateres... switch måske?

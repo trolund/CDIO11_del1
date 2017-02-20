@@ -18,6 +18,21 @@ public class LanguageHandler {
 									  "| Skift datalag    6 |\n" + 
 									  "| Afslut           0 |\n" + 
 									  "\\--------------------/\n";
+	
+	public final String updateMessage = 
+			"\n/--------------------\\\n" + 
+	          "| what to change?    |\n" + 
+			  "|--------------------|\n" + 
+			  "| Kommando        ID |\n" + 
+			  "|--------------------|\n" + 
+			  "| cpr		      1 |\n" +
+			  "| userid           2 |\n" + 
+			  "| username         3 |\n" + 
+			  "| password         4 |\n" + 
+			  "| initials         5 |\n" +
+			  "| remove role      6 |\n" + 
+			  "| add role         0 |\n" + 
+			  "\\-------------------/\n";
 
 	private final String messageUserSuffix = ": ";
 	private final String messageServerPrefix = "<< ";

@@ -119,5 +119,19 @@ public class PData implements IData {
 		userStoreList.remove(binarysearch(userStoreList, 0, userStoreList.size() - 1, userId));
 		Collections.sort(userStoreList);
 	}
+	
+	public boolean userExist(int id) throws DALException{
+		
+			UserDTO user = binarysearch(userStoreList, 0, userStoreList.size() - 1, id);
+			if(user == null){
+				return false;
+			}
+			else{
+				return true;
+			}
+			
+			
+		
+	}
 
 }
