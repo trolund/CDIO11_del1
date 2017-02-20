@@ -71,10 +71,23 @@ public class NPData implements IData {
 		userStoreList.add(user);
 		Collections.sort(userStoreList);
 	}
+	
+	public void updateUser(int userId, int opraton, String input) throws DALException{
+		for (Iterator iterator = userStoreList.iterator(); iterator.hasNext();) {
+			UserDTO userDTO = (UserDTO) iterator.next();
 
-	@Override
-	public void updateUser(UserDTO user) throws DALException {
-		Collections.sort(userStoreList);
+			if(userDTO.getUserId() == userId){
+				switch(opraton){
+				case 1: userDTO.setCpr(input); break;
+				case 2: int x = Integer.parseInt(input); userDTO.setUserId(x); break;
+				case 3: userDTO.setUserName(input); break;
+				case 4: userDTO.setPassword(input); break;
+				case 5: userDTO.setIni(input); break;
+				case 6: userDTO.addRole(input); break;
+				case 7: userDTO.removeRole(input); break;
+				}
+			}
+		}
 	}
 
 	@Override
@@ -94,22 +107,6 @@ public class NPData implements IData {
 }
 	
 	
-	public void updateUser(int userId, int opraton, String input) throws DALException{
-		for (Iterator iterator = userStoreList.iterator(); iterator.hasNext();) {
-			UserDTO userDTO = (UserDTO) iterator.next();
-
-			if(userDTO.getUserId() == userId){
-				switch(opraton){
-				case 1: userDTO.setCpr(input); break;
-				case 2: int x = Integer.parseInt(input); userDTO.setUserId(x); break;
-				case 3: userDTO.setUserName(input); break;
-				case 4: userDTO.setPassword(input); break;
-				case 5: userDTO.setIni(input); break;
-				case 6: userDTO.addRole(input); break;
-				case 7: userDTO.removeRole(input); break;
-				}
-			}
-		}
-	}
+	
 
 }

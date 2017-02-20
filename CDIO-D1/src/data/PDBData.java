@@ -29,7 +29,6 @@ public class PDBData implements IData {
 
 	}
 
-	@Override
 	public void updateUser(UserDTO user) throws DALException {
 
 	}
@@ -37,6 +36,18 @@ public class PDBData implements IData {
 	@Override
 	public void deleteUser(int userId) throws DALException {
 
+	}
+
+	@Override
+	public void updateUser(int userId, int operation, String input) throws DALException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean userExist(int userId) throws DALException {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
