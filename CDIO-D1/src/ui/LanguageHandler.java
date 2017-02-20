@@ -10,7 +10,7 @@ public class LanguageHandler {
 									  "|--------------------|\n" + 
 									  "| Kommando        ID |\n" + 
 									  "|--------------------|\n" + 
-									  "| Vis hjælp        1 |\n" +
+									  "| Vis menu         1 |\n" + //slet denne
 									  "| Opret bruger     2 |\n" + 
 									  "| Vis brugere      3 |\n" + 
 									  "| Opdatér bruger   4 |\n" + 
@@ -31,7 +31,8 @@ public class LanguageHandler {
 										"| Adgangskode      4 |\n" + 
 										"| initialer        5 |\n" +
 										"| Tilføje rolle    6 |\n" + 
-										"| Slet rolle       7 |\n" + 
+										"| Slet rolle       7 |\n" +
+										"| Gå tilbage       0 |\n" +
 										"\\-------------------/\n";
 
 
