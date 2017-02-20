@@ -57,11 +57,15 @@ public class LanguageHandler {
 	public final String enterRemoveRoleMessage = "Slet rolle" + messageUserSuffix;
 	
 	public final String userDeletionMessage(int userId) {
-		return "Slet bruger med id [" + userId + "] (y/n)" + messageUserSuffix;
+		return messageServerPrefix + "Slet bruger med id [" + userId + "] (y/n)" + messageUserSuffix;
 	}
 	
 	public final String userCreatedMessage (int userId) {
-		return "Bruger med id [" + userId + "] er nu oprettet.";
+		return messageServerPrefix + "Bruger med id [" + userId + "] er nu oprettet.";
+	}
+	
+	public final String userNotFoundMessage(int userId) {
+		return messageServerPrefix + "Bruger med id [" + userId + "] kunne ikke findes.";
 	}
 
 	private LanguageHandler() {
