@@ -59,7 +59,7 @@ public class TUI implements ITUI {
 				}
 				break;
 			case 4:
-				try {	
+				try {
 					deleteUser();
 				} catch (DALException e) {
 					e.printStackTrace();
@@ -71,7 +71,7 @@ public class TUI implements ITUI {
 				print(languageHandler.invalidCommandMessage, true);
 				break;
 			}
-			
+
 		}
 	}
 
@@ -169,34 +169,33 @@ public class TUI implements ITUI {
 				print(languageHandler.invalidCommandMessage, true);
 				break;
 			}
-			
+
 		}
-	
+
 	}
 
 	@Override
 	public void deleteUser() throws DALException {
 		int userId = -1;
-		if(!logic.userExists(userId)) {
-		do {
-			print(languageHandler.enterUserIdMessage, false);
-			userId = input.nextInt();
-			input.nextLine();
-		} while (userId == -1 || userId < 11 || userId > 99);
+		if (!logic.userExists(userId)) {
+			do {
+				print(languageHandler.enterUserIdMessage, false);
+				userId = input.nextInt();
+				input.nextLine();
+			} while (userId == -1 || userId < 11 || userId > 99);
 
-		String confirm = "";
-		do {
-			print(languageHandler.userDeletionMessage(userId), false);
-			confirm = input.next();
-		} while (!confirm.equalsIgnoreCase("y") && !confirm.equalsIgnoreCase("n"));
+			String confirm = "";
+			do {
+				print(languageHandler.userDeletionMessage(userId), false);
+				confirm = input.next();
+			} while (!confirm.equalsIgnoreCase("y") && !confirm.equalsIgnoreCase("n"));
 
-		if (confirm.equalsIgnoreCase("y")) {
-			logic.deleteUser(userId);
-			print("Bruger [" + userId + "] er slettet. ", true);
-		}
-		}
-		else{
-			print("brugen findes ikke!", false);
+			if (confirm.equalsIgnoreCase("y")) {
+				logic.deleteUser(userId);
+				print("Bruger [" + userId + "] er slettet. ", true);
+			}
+		} else {
+			throw new DALException("Brugeren findes ikke.");
 		}
 	}
 
