@@ -98,7 +98,7 @@ public class TUI implements ITUI {
 		do {
 			print(languageHandler.enterUserNameMessage, false);
 			userName = input.nextLine();
-		} while (userName == null);
+		} while (userName == null || userName.length() < 1 || userName.length() < 20);
 
 		String password;
 		do {
@@ -118,26 +118,26 @@ public class TUI implements ITUI {
 			role = input.nextLine();
 		} while (role == null);
 
-		print(languageHandler.userCreatedMessage(userId), true);		
+		print(languageHandler.userCreatedMessage(userId), true);
 		logic.createUser(userId, cpr, userName, password, ini, role);
 	}
 
 	@Override
 	public void updateUser() throws DALException {
-		
+
 		System.out.println("User id:");
 		int id = input.nextInt();
-		
-		if(!logic.userExist(id)){
+
+		if (!logic.userExist(id)) {
 			System.err.println("Brugen kunne ikke findes");
-		}
-		else{
+		} else {
 			print(languageHandler.updateMessage, true);
 			int action = input.nextInt();
-			
-			switch(action){
-			case 0: break;
-			case 1: 
+
+			switch (action) {
+			case 0:
+				break;
+			case 1:
 				print("Indtast nyt cpr", true);
 				String cpr = input.next();
 				logic.updateUser(id, 1, cpr);
@@ -172,14 +172,13 @@ public class TUI implements ITUI {
 				String removeRole = input.next();
 				logic.updateUser(id, 7, removeRole);
 				break;
-			default: 
+			default:
 				print(languageHandler.invalidCommandMessage, true);
 				break;
 			}
-			
+
 		}
-		
-		
+
 		/*
 		 * Først find ud af hvad der skal opdateres... switch måske?
 		 * 
@@ -196,20 +195,20 @@ public class TUI implements ITUI {
 			userId = input.nextInt();
 			input.nextLine();
 		} while (userId == -1 || userId < 11 || userId > 99);
-	
+
 		/* Skal vi validere om en bruger med user id'en findes her? */
-		
+
 		String confirm = "";
 		do {
 			print(languageHandler.userDeletionMessage(userId), false);
 			confirm = input.next();
 		} while (!confirm.equalsIgnoreCase("y") && !confirm.equalsIgnoreCase("n"));
-		
+
 		if (confirm.equalsIgnoreCase("y")) {
 			logic.deleteUser(userId);
 			print("Bruger [" + userId + "] er slettet. ", true);
 		}
-		
+
 	}
 
 	private void showUsers() throws DALException {
