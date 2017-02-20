@@ -19,9 +19,7 @@ public class TUI implements ITUI {
 
 	public void initTUI() {
 		print(languageHandler.menuMessage, true);
-
 		while (true) {
-
 			int command = getCommand();
 
 			switch (command) {
