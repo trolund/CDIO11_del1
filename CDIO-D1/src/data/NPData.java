@@ -2,6 +2,7 @@ package data;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import data.IData.DALException;
@@ -91,5 +92,27 @@ public class NPData implements IData {
 			return true;
 		}
 }
+	
+	
+	public void updateUser(int userId, int opraton, String input) throws DALException{
+		for (Iterator iterator = userStoreList.iterator(); iterator.hasNext();) {
+			UserDTO userDTO = (UserDTO) iterator.next();
+			
+			if(userDTO.getUserId() == userId){
+				switch(opraton){
+				case 1: userDTO.setCpr(input);
+				case 2: int x = (int) input; userDTO.setUserId();
+				}
+				
+				
+				
+				
+				
+			}
+			
+		}
+		
+		
+	}
 
 }

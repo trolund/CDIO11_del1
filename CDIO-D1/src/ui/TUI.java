@@ -137,13 +137,37 @@ public class TUI implements ITUI {
 			
 			switch(action){
 			case 1: 
-				print("Enter new CPR", true);
+				print("Indtast nyt cpr", true);
 				String cpr = input.nextLine();
+				logic.updateUser(id, 1, cpr);
 				break;
 			case 2:
-				print("Enter new user id", true);
+				print("Indtast nyt id", true);
 				String iid = input.nextLine();
-			
+				break;
+			case 3:
+				print("Indtast nyt brugernavn", true);
+				String userName = input.nextLine();
+				break;
+			case 4:
+				print("Indtast ny adgangskode", true);
+				String pass = input.nextLine();
+				break;
+			case 5:
+				print("Indtast nye initialer", true);
+				String ini = input.nextLine();
+				break;
+			case 6:
+				print("Indtast role du ønsker at tilføje", true);
+				String addRole = input.nextLine();
+				break;
+			case 7:
+				print("Indtast role du ønsker at slette", true);
+				String removeRole = input.nextLine();
+				break;
+			default: 
+				print(languageHandler.invalidCommandMessage, true);
+				break;
 			}
 			
 		}
