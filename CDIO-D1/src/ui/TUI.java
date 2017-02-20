@@ -201,11 +201,22 @@ public class TUI implements ITUI {
 
 	private void switchDAL() throws DALException {
 		print(languageHandler.switchDALMessage, true);
+		int command = getCommand();
+		
+		switch (command) {
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		default:
+			break;
+		}
 	}
 
 	private void showUsers() throws DALException {
 		print(logic.showUsers(), true);
-
 	}
 
 	private int getCommand() {
