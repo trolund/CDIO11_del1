@@ -108,16 +108,8 @@ public class NPData implements IData {
 				case 6: userDTO.addRole(input); break;
 				case 7: userDTO.removeRole(input); break;
 				}
-				
-				
-				
-				
-				
 			}
-			
 		}
-		
-		
 	}
 
 }

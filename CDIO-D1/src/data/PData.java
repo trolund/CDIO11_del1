@@ -9,7 +9,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+
+import data.IData.DALException;
 
 public class PData implements IData {
 
@@ -132,7 +135,24 @@ public class PData implements IData {
 }
 
 	@Override
-	public void updateUser(int userId, int opraton, String input) {
-		// TODO Auto-generated method stub
-		
-	}}
+	public void updateUser(int userId, int opraton, String input) throws DALException{
+		for (Iterator iterator = userStoreList.iterator(); iterator.hasNext();) {
+			UserDTO userDTO = (UserDTO) iterator.next();
+
+			if(userDTO.getUserId() == userId){
+				switch(opraton){
+				case 1: userDTO.setCpr(input); break;
+				case 2: int x = Integer.parseInt(input); userDTO.setUserId(x); break;
+				case 3: userDTO.setUserName(input); break;
+				case 4: userDTO.setPassword(input); break;
+				case 5: userDTO.setIni(input); break;
+				case 6: userDTO.addRole(input); break;
+				case 7: userDTO.removeRole(input); break;
+				}
+				
+				saveUsers();
+			}
+		}
+	}
+
+}
