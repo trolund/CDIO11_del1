@@ -130,6 +130,7 @@ public class TUI implements ITUI {
 			case 1:
 				print(languageHandler.enterNewCprMessage, true);
 				String newCpr = input.next();
+				logic.
 				logic.updateUser(userId, 1, newCpr);
 				break;
 			case 2:
