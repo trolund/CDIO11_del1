@@ -124,11 +124,10 @@ public class TUI implements ITUI {
 
 	@Override
 	public void updateUser() throws DALException {
-
 		System.out.println("User id:");
-		int id = input.nextInt();
+		int userId = input.nextInt();
 
-		if (!logic.userExist(id)) {
+		if (!logic.userExist(userId)) {
 			System.err.println("Brugen kunne ikke findes");
 		} else {
 			print(languageHandler.updateMessage, true);
@@ -136,39 +135,39 @@ public class TUI implements ITUI {
 
 			switch (action) {
 			case 1:
-				print("Indtast nyt cpr", true);
-				String cpr = input.next();
-				logic.updateUser(id, 1, cpr);
+				print(languageHandler.enterNewCprMessage, true);
+				String newCpr = input.next();
+				logic.updateUser(userId, 1, newCpr);
 				break;
 			case 2:
-				print("Indtast nyt id", true);
-				String iid = input.next();
-				logic.updateUser(id, 2, iid);
+				print(languageHandler.enterNewUserIdMessage, true);
+				String newUserId = input.next();
+				logic.updateUser(userId, 2, newUserId);
 				break;
 			case 3:
-				print("Indtast nyt brugernavn", true);
-				String userName = input.next();
-				logic.updateUser(id, 3, userName);
+				print(languageHandler.enterNewUserNameMessage, true);
+				String newUserName = input.next();
+				logic.updateUser(userId, 3, newUserName);
 				break;
 			case 4:
-				print("Indtast ny adgangskode", true);
-				String pass = input.next();
-				logic.updateUser(id, 4, pass);
+				print(languageHandler.enterNewPasswordMessage, true);
+				String newPassword = input.next();
+				logic.updateUser(userId, 4, newPassword);
 				break;
 			case 5:
-				print("Indtast nye initialer", true);
-				String ini = input.next();
-				logic.updateUser(id, 5, ini);
+				print(languageHandler.enterNewIniMessage, true);
+				String newIni = input.next();
+				logic.updateUser(userId, 5, newIni);
 				break;
 			case 6:
-				print("Indtast role du ønsker at tilføje", true);
+				print(languageHandler.enterAddRoleMessage, true);
 				String addRole = input.next();
-				logic.updateUser(id, 6, addRole);
+				logic.updateUser(userId, 6, addRole);
 				break;
 			case 7:
-				print("Indtast role du ønsker at slette", true);
+				print(languageHandler.enterRemoveRoleMessage, true);
 				String removeRole = input.next();
-				logic.updateUser(id, 7, removeRole);
+				logic.updateUser(userId, 7, removeRole);
 				break;
 			default:
 				print(languageHandler.invalidCommandMessage, true);
@@ -184,7 +183,7 @@ public class TUI implements ITUI {
 			print(languageHandler.enterUserIdMessage, false);
 			userId = input.nextInt();
 			input.nextLine();
-		} while (userId == -1 || userId < 11 || userId > 99 && logic.userExist(userId));
+		} while (  userId == -1 || userId < 11 || userId > 99 && !logic.userExist(userId));
 
 		String confirm = "";
 		do {

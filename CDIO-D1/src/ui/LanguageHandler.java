@@ -48,6 +48,14 @@ public class LanguageHandler {
 	public final String enterIniMessage = "Indtast initialer" + messageUserSuffix;;
 	public final String enterRoleMessage = "Indtast rolle" + messageUserSuffix;
 	
+	public final String enterNewCprMessage = "Indtast nyt CPR" + messageUserSuffix;
+	public final String enterNewUserIdMessage = "Indtast nyt bruger id" + messageUserSuffix;
+	public final String enterNewUserNameMessage = "Indtast nyt brugernavn" + messageUserSuffix;;
+	public final String enterNewPasswordMessage = "Indtast nyt password" + messageUserSuffix;;
+	public final String enterNewIniMessage = "Indtast nye initialer" + messageUserSuffix;;
+	public final String enterAddRoleMessage = "Tilføj rolle" + messageUserSuffix;
+	public final String enterRemoveRoleMessage = "Slet rolle" + messageUserSuffix;
+	
 	public final String userDeletionMessage(int userId) {
 		return "Slet bruger med id [" + userId + "] (y/n)" + messageUserSuffix;
 	}
