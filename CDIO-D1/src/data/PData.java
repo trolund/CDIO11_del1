@@ -125,15 +125,6 @@ public class PData implements IData {
 		sortAndSave();
 	}
 
-	public boolean userExist(int id) throws DALException {
-		UserDTO user = binarysearch(userStoreList, 0, userStoreList.size() - 1, id);
-		if (user == null) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-
 	private void sortAndSave() throws DALException {
 		Collections.sort(userStoreList);
 		saveUsers();
