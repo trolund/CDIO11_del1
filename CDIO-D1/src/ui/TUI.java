@@ -21,15 +21,8 @@ public class TUI implements ITUI {
 		print(languageHandler.menuMessage, true);
 
 		while (true) {
-			int command = -1;
-			do {
-				print(languageHandler.commandMessage, false);
-				while (!input.hasNextInt()) {
-					print(languageHandler.commandMessage, false);
-					input.next();
-				}
-				command = input.nextInt();
-			} while (command == -1);
+
+			int command = getCommand();
 
 			switch (command) {
 			case 0:
@@ -67,6 +60,11 @@ public class TUI implements ITUI {
 				}
 				break;
 			case 5:
+				try {
+					switchDAL();
+				} catch (DALException e) {
+					e.printStackTrace();
+				}
 				break;
 			default:
 				print(languageHandler.invalidCommandMessage, true);
@@ -188,7 +186,7 @@ public class TUI implements ITUI {
 		if (!logic.userExists(userId)) {
 			throw new DALException("Brugeren findes ikke!");
 		}
-		
+
 		String confirm = "";
 		do {
 			print(languageHandler.userDeletionMessage(userId), false);
@@ -201,12 +199,26 @@ public class TUI implements ITUI {
 		}
 	}
 
-	private void switchDAL() {
-		
+	private void switchDAL() throws DALException {
+		print(languageHandler.switchDALMessage, true);
 	}
-	
+
 	private void showUsers() throws DALException {
 		print(logic.showUsers(), true);
+
+	}
+
+	private int getCommand() {
+		int command = -1;
+		do {
+			print(languageHandler.commandMessage, false);
+			while (!input.hasNextInt()) {
+				print(languageHandler.commandMessage, false);
+				input.next();
+			}
+			command = input.nextInt();
+		} while (command == -1);
+		return command;
 	}
 
 	@Override
