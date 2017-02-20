@@ -177,14 +177,16 @@ public class TUI implements ITUI {
 	@Override
 	public void deleteUser() throws DALException {
 		int userId = -1;
-		if (!logic.userExists(userId)) {
+		
 			do {
 				print(languageHandler.enterUserIdMessage, false);
 				userId = input.nextInt();
 				input.nextLine();
 			} while (userId == -1 || userId < 11 || userId > 99);
 
+			
 			String confirm = "";
+			if(logic.userExists(userId)){
 			do {
 				print(languageHandler.userDeletionMessage(userId), false);
 				confirm = input.next();
@@ -194,10 +196,12 @@ public class TUI implements ITUI {
 				logic.deleteUser(userId);
 				print("Bruger [" + userId + "] er slettet. ", true);
 			}
-		} else {
-			throw new DALException("Brugeren findes ikke.");
-		}
+		} 
+			else {
+				print("Brugeren findes ikke!", true);
+			}
 	}
+	
 
 	private void showUsers() throws DALException {
 		print(logic.showUsers(), true);
