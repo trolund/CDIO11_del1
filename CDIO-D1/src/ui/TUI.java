@@ -37,40 +37,34 @@ public class TUI implements ITUI {
 				System.exit(0);
 				break;
 			case 1:
-				print(languageHandler.menuMessage, true);
-				break;
-			case 2:
-				/* Hvor skal denne Exception catches? */
 				try {
 					createUser();
 				} catch (DALException e) {
 					e.printStackTrace();
 				}
 				break;
-			case 3:
-				/* Hvor skal denne Exception catches? */
+			case 2:
 				try {
 					showUsers();
 				} catch (DALException e1) {
 					e1.printStackTrace();
 				}
 				break;
-			case 4:
+			case 3:
 				try {
 					updateUser();
 				} catch (DALException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				break;
-			case 5:
+			case 4:
 				try {
 					deleteUser();
 				} catch (DALException e) {
 					e.printStackTrace();
 				}
 				break;
-			case 6:
+			case 5:
 				break;
 			default:
 				print(languageHandler.invalidCommandMessage, true);
@@ -124,11 +118,11 @@ public class TUI implements ITUI {
 
 	@Override
 	public void updateUser() throws DALException {
-		System.out.println("User id:");
+		print(languageHandler.enterUserIdMessage, true);
 		int userId = input.nextInt();
 
 		if (!logic.userExist(userId)) {
-			System.err.println("Brugen kunne ikke findes");
+			print(languageHandler.userNotFoundMessage(userId), true);
 		} else {
 			print(languageHandler.updateMessage, true);
 			int action = input.nextInt();
