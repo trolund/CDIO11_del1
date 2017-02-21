@@ -57,7 +57,16 @@ public class LanguageHandler {
 	public final String enterUserNameMessage = "Indtast brugernavn" + messageUserSuffix;;
 	public final String enterPasswordMessage = "Indtast password" + messageUserSuffix;;
 	public final String enterIniMessage = "Indtast initialer" + messageUserSuffix;;
-	public final String enterRoleMessage = "Indtast rolle" + messageUserSuffix;
+	public final String enterRoleMessage = "\n/--------------------\\\n" + 
+											"| vælg rolle         |\n" + 
+											"|--------------------|\n" + 
+											"| roller:         ID |\n" + 
+											"|--------------------|\n" + 
+											"| Admin            1 |\n" + 
+											"| Pharmacist       2 |\n" + 
+											"| Foreman          3 |\n" + 
+											"| Operator         4 |\n" +
+											"\\-------------------/\n";
 
 	public final String userNotCreatedErrMessage = messageServerPrefix + "Brugeren blev ikke oprettet!";
 	public final String userNotUpdatedErrMessage = messageServerPrefix + "Brugeren blev ikke opdateret!";
