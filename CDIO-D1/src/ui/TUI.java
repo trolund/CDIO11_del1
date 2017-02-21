@@ -1,6 +1,7 @@
 package ui;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import data.IData.DALException;
@@ -49,7 +50,7 @@ public class TUI implements ITUI {
 			ini = input.nextLine();
 		} while (ini == null);
 
-		ArrayList<String> roles = new ArrayList();
+		List<String> roles = new ArrayList<>();
 		boolean x = true;
 		do {
 			print(languageHandler.enterRoleMessage, false);
@@ -58,52 +59,49 @@ public class TUI implements ITUI {
 			int action = input.nextInt();
 			switch (action) {
 			case 1:
-				if(roles.contains("Admin")){
+				if (roles.contains("Admin")) {
 					printErr("brugeren er allerede Admin", true);
-				}
-				else{
-				roles.add("Admin");
+				} else {
+					roles.add("Admin");
 				}
 				break;
 			case 2:
-				if(roles.contains("Pharmacist")){
+				if (roles.contains("Pharmacist")) {
 					printErr("brugeren er allerede Pharmacist", true);
 				}
-				
-				else{
+
+				else {
 					roles.add("Pharmacist");
 				}
 				break;
 			case 3:
-				if(roles.contains("Foreman")){
+				if (roles.contains("Foreman")) {
 					printErr("brugeren er allerede Foreman", true);
-				}
-				else{
+				} else {
 					roles.add("Foreman");
 				}
 				break;
 			case 4:
-				if(roles.contains("Operator")){
+				if (roles.contains("Operator")) {
 					printErr("brugeren er allerede Operator", true);
-				}
-				else{
+				} else {
 					roles.add("Operator");
 				}
 				break;
-			default: print("rolle ikke tilføjet, pågrund af ugryldig komando",true);
+			default:
+				print("rolle ikke tilføjet, pågrund af ugryldig komando", true);
 			}
 
-				print("vil du tilføje en rolle mere? (y/n)", true);
-				String confirm = "";
-				confirm = input.next();
-				if(confirm.equalsIgnoreCase("y")){
-					x = true;
-				}
-				else{
-					printErr("rolle tildeling afsluttet", true);
-					x = false;
-				}
-			
+			print("vil du tilføje en rolle mere? (y/n)", true);
+			String confirm = "";
+			confirm = input.next();
+			if (confirm.equalsIgnoreCase("y")) {
+				x = true;
+			} else {
+				printErr("rolle tildeling afsluttet", true);
+				x = false;
+			}
+
 		} while (x);
 
 		UserDTO userdto = new UserDTO(cpr, userId, userName, password, ini);

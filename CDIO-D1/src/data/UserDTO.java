@@ -106,8 +106,8 @@ public class UserDTO implements Serializable, Comparable<UserDTO> {
 		return "Bruger id: " + userId + ", Brugernavn: " + userName + ", Initialer: " + ini + ", Roller: " + roles;
 	}
 	
-	public void addAll(ArrayList<String> AL){
-		roles.addAll(AL);
+	public void addAll(List<String> roles2){
+		roles.addAll(roles2);
 	}
 
 }
