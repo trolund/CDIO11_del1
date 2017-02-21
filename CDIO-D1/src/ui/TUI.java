@@ -4,65 +4,19 @@ import java.util.Scanner;
 
 import data.IData.DALException;
 import data.UserDTO;
-import logic.ILogic;
 
 public class TUI implements ITUI {
 
-	private final ILogic logic;
-	private final LanguageHandler languageHandler;
 	private final Scanner input;
+	private final LanguageHandler languageHandler;
 
-	public TUI(ILogic logic) {
-		this.logic = logic;
-		this.languageHandler = LanguageHandler.getInstance();
+	public TUI() {
 		input = new Scanner(System.in);
-	}
-
-	public void initTUI() {
-		print(languageHandler.menuMessage, true);
-		while (true) {
-			int command = getCommand();
-
-			switch (command) {
-			case 0:
-				print(languageHandler.quitMessage, true);
-				System.exit(0);
-				break;
-			case 1:
-				try {
-					createUser();
-				} catch (DALException e) {
-					printErr(languageHandler.userNotCreatedErrMessage, true);
-				}
-				break;
-			case 2:
-				break;
-			case 3:
-				try {
-					updateUser();
-				} catch (DALException e) {
-					printErr(languageHandler.userNotUpdatedErrMessage, true);
-				}
-				break;
-			case 4:
-				try {
-					deleteUser();
-				} catch (DALException e) {
-					printErr(languageHandler.userNotDeletedErrMessage, true);
-				}
-				break;
-			case 5:
-				break;
-			default:
-				print(languageHandler.invalidCommandMessage, true);
-				break;
-			}
-
-		}
+		this.languageHandler = LanguageHandler.getInstance();
 	}
 
 	@Override
-	public void createUser() throws DALException {
+	public UserDTO createUser() throws DALException {
 		String cpr;
 		do {
 			print(languageHandler.enterCprMessage, false);
@@ -86,7 +40,7 @@ public class TUI implements ITUI {
 		do {
 			print(languageHandler.enterPasswordMessage, false);
 			password = input.nextLine();
-		} while (!logic.verifyPassword(password));
+		} while (password == null);
 
 		String ini;
 		do {
@@ -101,9 +55,9 @@ public class TUI implements ITUI {
 		} while (role == null);
 
 		UserDTO userdto = new UserDTO(cpr, userId, userName, password, ini, role);
-		logic.createUser(userdto);
 
 		print(languageHandler.userCreatedMessage(userId), true);
+		return userdto;
 	}
 
 	@Override
@@ -143,7 +97,7 @@ public class TUI implements ITUI {
 	}
 
 	@Override
-	public void deleteUser() throws DALException {
+	public int deleteUser() throws DALException {
 		int userId = -1;
 
 		do {
@@ -159,12 +113,13 @@ public class TUI implements ITUI {
 		} while (!confirm.equalsIgnoreCase("y") && !confirm.equalsIgnoreCase("n"));
 
 		if (confirm.equalsIgnoreCase("y")) {
-			logic.deleteUser(userId);
-			print("Bruger [" + userId + "] er slettet. ", true);
+			return userId;
 		}
+		return -1;
 	}
 
-	private int getCommand() {
+	@Override
+	public int getCommand() {
 		int command = -1;
 		do {
 			print(languageHandler.commandMessage, false);
@@ -177,7 +132,8 @@ public class TUI implements ITUI {
 		return command;
 	}
 
-	private void print(String message, boolean newLine) {
+	@Override
+	public void print(String message, boolean newLine) {
 		if (newLine) {
 			System.out.println(message);
 		} else {
@@ -185,7 +141,8 @@ public class TUI implements ITUI {
 		}
 	}
 
-	private void printErr(String message, boolean newLine) {
+	@Override
+	public void printErr(String message, boolean newLine) {
 		if (newLine) {
 			System.err.println(message);
 		} else {
