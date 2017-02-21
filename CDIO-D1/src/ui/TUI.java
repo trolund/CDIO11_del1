@@ -51,13 +51,17 @@ public class TUI implements ITUI {
 		String role = null;
 		do {
 			print(languageHandler.enterRoleMessage, false);
-			print("Kommando:", false);
-			int action= input.nextInt();
-			switch(action){
-			case 0: role = "Admin";
-			case 1: role = "Pharmacist";
-			case 2: role = "Foreman";
-			case 3: role = "Operator";
+			print(languageHandler.commandMessage, false);
+			int action = input.nextInt();
+			switch (action) {
+			case 0:
+				role = "Admin";
+			case 1:
+				role = "Pharmacist";
+			case 2:
+				role = "Foreman";
+			case 3:
+				role = "Operator";
 			}
 		} while (role == null);
 
@@ -66,42 +70,6 @@ public class TUI implements ITUI {
 		print(languageHandler.userCreatedMessage(userId), true);
 		return userdto;
 	}
-//
-//	@Override
-//	public void updateUser() throws DALException {
-//
-//		
-//		  print(languageHandler.enterUserIdMessage, true); int userId =
-//		  input.nextInt();
-//		  
-//		  if (!logic.userExists(userId)) {
-//		  print(languageHandler.userNotFoundMessage(userId), true); } else {
-//		  print(languageHandler.updateMessage, true); int action =
-//		  input.nextInt();
-//		  
-//		  switch (action) { case 1: print(languageHandler.enterNewCprMessage,
-//		  true); String newCpr = input.next(); logic. logic.updateUser(userId,
-//		  1, newCpr); break; case 2:
-//		  print(languageHandler.enterNewUserIdMessage, true); String newUserId
-//		  = input.next(); logic.updateUser(userId, 2, newUserId); break; case
-//		  3: print(languageHandler.enterNewUserNameMessage, true); String
-//		  newUserName = input.next(); logic.updateUser(userId, 3, newUserName);
-//		  break; case 4: print(languageHandler.enterNewPasswordMessage, true);
-//		  String newPassword = input.next(); logic.updateUser(userId, 4,
-//		  newPassword); break; case 5:
-//		 * print(languageHandler.enterNewIniMessage, true); String newIni =
-//		 * input.next(); logic.updateUser(userId, 5, newIni); break; case 6:
-//		 * print(languageHandler.enterAddRoleMessage, true); String addRole =
-//		 * input.next(); break; case 7:
-//		 * print(languageHandler.enterRemoveRoleMessage, true); String
-//		 * removeRole = input.next(); break; default:
-//		 * print(languageHandler.invalidCommandMessage, true); break; }
-//		 * 
-//		 * }
-//		 * 
-//		 */
-//
-//	}
 
 	@Override
 	public int deleteUser() throws DALException {
@@ -156,7 +124,5 @@ public class TUI implements ITUI {
 			System.err.print(message);
 		}
 	}
-
-	
 
 }
