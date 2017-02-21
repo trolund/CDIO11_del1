@@ -44,6 +44,12 @@ public class Controller {
 				}
 				break;
 			case 3:
+				try {
+					logic.updateUser(tui.createUser());
+				} catch (DALException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 				break;
 			case 4:

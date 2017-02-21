@@ -5,7 +5,6 @@ import data.UserDTO;
 
 public interface ITUI {
 	UserDTO createUser() throws DALException;
-	void updateUser() throws DALException;
 	int deleteUser() throws DALException;
 	int getCommand();
 	void print(String message, boolean newLine);
