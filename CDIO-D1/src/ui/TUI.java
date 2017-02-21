@@ -48,10 +48,17 @@ public class TUI implements ITUI {
 			ini = input.nextLine();
 		} while (ini == null);
 
-		String role;
+		String role = null;
 		do {
 			print(languageHandler.enterRoleMessage, false);
-			role = input.nextLine();
+			print("Kommando:", false);
+			int action= input.nextInt();
+			switch(action){
+			case 0: role = "Admin";
+			case 1: role = "Pharmacist";
+			case 2: role = "Foreman";
+			case 3: role = "Operator";
+			}
 		} while (role == null);
 
 		UserDTO userdto = new UserDTO(cpr, userId, userName, password, ini, role);
