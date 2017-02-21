@@ -60,7 +60,13 @@ public class Controller {
 				}
 				break;
 			case 5:
-				
+				tui.print(languageHandler.switchDALMessage, true);
+				int command0 = tui.getCommand();
+				try {
+					logic.switchDAL(command0);
+				} catch (DALException e) {
+					e.printStackTrace();
+				}
 				break;
 			default:
 				tui.print(languageHandler.invalidCommandMessage, true);

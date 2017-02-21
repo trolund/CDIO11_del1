@@ -9,4 +9,5 @@ public interface ILogic {
 	void deleteUser(int userId) throws DALException;
 	String showUsers() throws DALException;
 	boolean verifyPassword(String password);
+	void switchDAL(int command) throws DALException;
 }

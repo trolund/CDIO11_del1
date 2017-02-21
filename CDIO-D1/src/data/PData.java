@@ -9,7 +9,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 public class PData implements IData {
@@ -116,7 +115,7 @@ public class PData implements IData {
 	@Override
 	public void updateUser(UserDTO user) throws DALException {
 		for (UserDTO userDTO : userStoreList) {
-			if(userDTO.getUserId() == user.getUserId()){
+			if (userDTO.getUserId() == user.getUserId()) {
 				userStoreList.remove(userDTO);
 				userStoreList.add(user);
 				sortAndSave();

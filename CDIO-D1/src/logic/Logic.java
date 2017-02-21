@@ -2,6 +2,9 @@ package logic;
 
 import data.IData;
 import data.IData.DALException;
+import data.NPData;
+import data.PDBData;
+import data.PData;
 import data.UserDTO;
 
 public class Logic implements ILogic {
@@ -36,7 +39,7 @@ public class Logic implements ILogic {
 		sb.append("\\-----------------------------------------------------------------------/\n");
 		return sb.toString();
 	}
-	
+
 	public boolean verifyPassword(String password) {
 		if (password.length() >= 6 && catCount(password) >= 3) {
 			return true;
@@ -48,21 +51,25 @@ public class Logic implements ILogic {
 	private int catCount(String password) {
 		int count = 0;
 
-		for (int i = password.length() - 1; i >= 0; i--) { // tjek for store bogstav kategori
+		for (int i = password.length() - 1; i >= 0; i--) { // tjek for store
+															// bogstav kategori
 			if (Character.isUpperCase(password.charAt(i))) {
 				count++;
 				break;
 			}
 		}
 
-		for (int i = password.length() - 1; i >= 0; i--) { // tjek for små bogstav kategori
+		for (int i = password.length() - 1; i >= 0; i--) { // tjek for små
+															// bogstav kategori
 			if (Character.isLowerCase(password.charAt(i))) {
 				count++;
 				break;
 			}
 		}
 
-		for (int i = password.length() - 1; i >= 0; i--) { // tjek for specialtegn kategori
+		for (int i = password.length() - 1; i >= 0; i--) { // tjek for
+															// specialtegn
+															// kategori
 			int as = password.charAt(i);
 			if (as >= 32 && as <= 64 || as >= 91 && as <= 96 || as >= 123 && as <= 126) {
 				count++;
@@ -70,7 +77,8 @@ public class Logic implements ILogic {
 			}
 		}
 
-		for (int i = password.length() - 1; i >= 0; i--) { // tjek for tal kategori
+		for (int i = password.length() - 1; i >= 0; i--) { // tjek for tal
+															// kategori
 			int as = password.charAt(i);
 			if (as >= 48 && as <= 57) {
 				count++;
@@ -81,5 +89,21 @@ public class Logic implements ILogic {
 		return count;
 	}
 
+	@Override
+	public void switchDAL(int command) throws DALException {
+		switch (command) {
+		case 1:
+			data = new NPData();
+			break;
+		case 2:
+			data = new PData();
+			break;
+		case 3:
+			data = new PDBData();
+			break;
+		default:
+			throw new DALException("ERROR!!!!!");
+		}
+	}
 
 }
