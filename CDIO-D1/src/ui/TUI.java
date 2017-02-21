@@ -1,5 +1,6 @@
 package ui;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import data.IData.DALException;
@@ -48,24 +49,65 @@ public class TUI implements ITUI {
 			ini = input.nextLine();
 		} while (ini == null);
 
-		String role = null;
+		ArrayList<String> roles = new ArrayList();
+		boolean x = true;
 		do {
 			print(languageHandler.enterRoleMessage, false);
 			print(languageHandler.commandMessage, false);
+
 			int action = input.nextInt();
 			switch (action) {
-			case 0:
-				role = "Admin";
 			case 1:
-				role = "Pharmacist";
+				if(roles.contains("Admin")){
+					printErr("brugeren er allerede Admin", true);
+				}
+				else{
+				roles.add("Admin");
+				}
+				break;
 			case 2:
-				role = "Foreman";
+				if(roles.contains("Pharmacist")){
+					printErr("brugeren er allerede Pharmacist", true);
+				}
+				
+				else{
+					roles.add("Pharmacist");
+				}
+				break;
 			case 3:
-				role = "Operator";
+				if(roles.contains("Foreman")){
+					printErr("brugeren er allerede Foreman", true);
+				}
+				else{
+					roles.add("Foreman");
+				}
+				break;
+			case 4:
+				if(roles.contains("Operator")){
+					printErr("brugeren er allerede Operator", true);
+				}
+				else{
+					roles.add("Operator");
+				}
+				break;
+			default: print("rolle ikke tilføjet, pågrund af ugryldig komando",true);
 			}
-		} while (role == null);
 
-		UserDTO userdto = new UserDTO(cpr, userId, userName, password, ini, role);
+				print("vil du tilføje en rolle mere? (y/n)", true);
+				String confirm = "";
+				confirm = input.next();
+				if(confirm.equalsIgnoreCase("y")){
+					x = true;
+				}
+				else{
+					printErr("rolle tildeling afsluttet", true);
+					x = false;
+				}
+			
+		} while (x);
+
+		UserDTO userdto = new UserDTO(cpr, userId, userName, password, ini);
+		userdto.addAll(roles);
 
 		print(languageHandler.userCreatedMessage(userId), true);
 		return userdto;

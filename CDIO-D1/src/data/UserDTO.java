@@ -24,6 +24,16 @@ public class UserDTO implements Serializable, Comparable<UserDTO> {
 		this.roles = new ArrayList<>();
 		this.roles.add(role);
 	}
+	
+	public UserDTO(String cpr, int userId, String userName, String password, String ini) {
+		this.cpr = cpr;
+		this.userId = userId;
+		this.userName = userName;
+		this.password = password;
+		this.ini = ini;
+		
+		this.roles = new ArrayList<>();
+	}
 
 	@Override
 	public int compareTo(UserDTO user) {
@@ -94,6 +104,10 @@ public class UserDTO implements Serializable, Comparable<UserDTO> {
 	@Override
 	public String toString() {
 		return "Bruger id: " + userId + ", Brugernavn: " + userName + ", Initialer: " + ini + ", Roller: " + roles;
+	}
+	
+	public void addAll(ArrayList<String> AL){
+		roles.addAll(AL);
 	}
 
 }
