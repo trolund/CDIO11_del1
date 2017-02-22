@@ -10,6 +10,10 @@ import ui.TUI;
 
 public class Main {
 
+	/**
+	 * Main method that initializes the three different layers and starts the
+	 * system with the Controller object.
+	 */
 	public static void main(String[] args) {
 		IData data = new PData();
 		ILogic logic = new Logic(data);

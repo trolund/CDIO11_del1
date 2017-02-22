@@ -7,9 +7,16 @@ import ui.LanguageHandler;
 
 public class Controller {
 
+	/**
+	 * Text user interface and logic layer objects, controlled by this
+	 * controller class.
+	 */
 	private ITUI tui;
 	private ILogic logic;
 
+	/**
+	 * LanguageHandler object to provide the class with various Strings.
+	 */
 	private final LanguageHandler languageHandler;
 
 	public Controller(ITUI tui, ILogic logic) {
@@ -18,8 +25,11 @@ public class Controller {
 		this.languageHandler = LanguageHandler.getInstance();
 	}
 
+	/**
+	 * Infinite loop that starts the system. Will ask the user for a command,
+	 * and keep waiting until the user has entered one.
+	 */
 	public void start() {
-
 		while (true) {
 			tui.print(languageHandler.menuMessage, true);
 			int command = tui.getCommand();
@@ -59,9 +69,9 @@ public class Controller {
 				break;
 			case 5:
 				tui.print(languageHandler.switchDALMessage, true);
-				int command0 = tui.getCommand();
+				int commandDAL = tui.getCommand();
 				try {
-					logic.switchDAL(command0);
+					logic.switchDAL(commandDAL);
 				} catch (DALException e) {
 					e.printStackTrace();
 				}

@@ -1,5 +1,9 @@
 package ui;
 
+/**
+ * Singleton class. LanguageHandler class holds all the String information used
+ * in the entire system.
+ */
 public class LanguageHandler {
 
 	private static final LanguageHandler instance = new LanguageHandler();
@@ -49,7 +53,7 @@ public class LanguageHandler {
 	public final String pharmacistRole = "Pharmacist";
 	public final String foremanRole = "Foreman";
 	public final String operatorRole = "Operator";
-	
+
 	public final String yInput = "y";
 	public final String nInput = "n";
 

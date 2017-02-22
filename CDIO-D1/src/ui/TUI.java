@@ -9,6 +9,10 @@ import data.UserDTO;
 
 public class TUI implements ITUI {
 
+	/**
+	 * Scanner object for user input and languageHandler object for various
+	 * Strings for output messages.
+	 */
 	private final Scanner input;
 	private final LanguageHandler languageHandler;
 
@@ -17,6 +21,10 @@ public class TUI implements ITUI {
 		this.languageHandler = LanguageHandler.getInstance();
 	}
 
+	/**
+	 * Method to prompt the user for all needed variables to create a new
+	 * UserDTO object.
+	 */
 	@Override
 	public UserDTO createUser() throws DALException {
 		String cpr;
@@ -109,6 +117,10 @@ public class TUI implements ITUI {
 		return userdto;
 	}
 
+	/**
+	 * Method that deletes an user associated with the specified userId, if it
+	 * exists.
+	 */
 	@Override
 	public int deleteUser() throws DALException {
 		int userId = -1;
@@ -132,6 +144,9 @@ public class TUI implements ITUI {
 		return -1;
 	}
 
+	/**
+	 * Receive a command from the user.
+	 */
 	@Override
 	public int getCommand() {
 		int command = -1;
@@ -146,6 +161,9 @@ public class TUI implements ITUI {
 		return command;
 	}
 
+	/**
+	 * Print normally to System.out.
+	 */
 	@Override
 	public void print(String message, boolean newLine) {
 		if (newLine) {
@@ -155,6 +173,9 @@ public class TUI implements ITUI {
 		}
 	}
 
+	/**
+	 * Print to System.err.
+	 */
 	@Override
 	public void printErr(String message, boolean newLine) {
 		if (newLine) {
