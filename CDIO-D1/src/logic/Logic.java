@@ -121,7 +121,7 @@ public class Logic implements ILogic {
 			data = new NPData();
 			break;
 		case 2:
-			data = new PData();
+			data = new PData("data.bin");
 			break;
 		default:
 			throw new DALException("Error changing data layer.");

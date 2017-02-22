@@ -15,7 +15,7 @@ public class Main {
 	 * system with the Controller object.
 	 */
 	public static void main(String[] args) {
-		IData data = new PData();
+		IData data = new PData("data.bin");
 		ILogic logic = new Logic(data);
 		ITUI tui = new TUI();
 		Controller controller = new Controller(tui, logic);

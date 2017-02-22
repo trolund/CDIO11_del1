@@ -23,13 +23,13 @@ public class PData implements IData {
 	private List<UserDTO> userStoreList;
 	private final File dataFile;
 
-	public PData() {
+	public PData(String fileName) {
 		/*
 		 * Initializing userStoreList as ArrayList, since we need dynamic
 		 * add/remove functionality. Initialize the dataFile object.
 		 */
 		userStoreList = new ArrayList<>();
-		dataFile = new File("data.bin");
+		dataFile = new File(fileName);
 
 		/*
 		 * Tries to load the users from existing data.bin file, if not found,
