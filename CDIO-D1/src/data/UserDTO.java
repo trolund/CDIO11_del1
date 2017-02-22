@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * General user data transfer object class. Holds all the information a
+ * specified user would need, with needed getter and setter methods.
+ */
 public class UserDTO implements Serializable, Comparable<UserDTO> {
 	private static final long serialVersionUID = 1L;
 
@@ -24,14 +28,14 @@ public class UserDTO implements Serializable, Comparable<UserDTO> {
 		this.roles = new ArrayList<>();
 		this.roles.add(role);
 	}
-	
+
 	public UserDTO(String cpr, int userId, String userName, String password, String ini) {
 		this.cpr = cpr;
 		this.userId = userId;
 		this.userName = userName;
 		this.password = password;
 		this.ini = ini;
-		
+
 		this.roles = new ArrayList<>();
 	}
 
@@ -105,9 +109,9 @@ public class UserDTO implements Serializable, Comparable<UserDTO> {
 	public String toString() {
 		return "Bruger id: " + userId + ", Brugernavn: " + userName + ", Initialer: " + ini + ", Roller: " + roles;
 	}
-	
-	public void addAll(List<String> roles2){
-		roles.addAll(roles2);
+
+	public void addAll(List<String> roles) {
+		roles.addAll(roles);
 	}
 
 }

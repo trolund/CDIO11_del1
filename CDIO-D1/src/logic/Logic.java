@@ -3,33 +3,48 @@ package logic;
 import data.IData;
 import data.IData.DALException;
 import data.NPData;
-import data.PDBData;
 import data.PData;
 import data.UserDTO;
 
 public class Logic implements ILogic {
 
+	/**
+	 * The logic layer is able to issue commands to the data access layer
+	 * through this object.
+	 */
 	private IData data;
 
 	public Logic(IData data) {
 		this.data = data;
 	}
 
+	/**
+	 * Wrapper method for the data access layer, createUser() method.
+	 */
 	@Override
 	public void createUser(UserDTO user) throws DALException {
 		data.createUser(user);
 	}
 
+	/**
+	 * Wrapper method for the data access layer, updateUser() method.
+	 */
 	@Override
 	public void updateUser(UserDTO user) throws DALException {
 		data.updateUser(user);
 	}
 
+	/**
+	 * Wrapper method for the data access layer, deleteUser() method.
+	 */
 	@Override
 	public void deleteUser(int userId) throws DALException {
 		data.deleteUser(userId);
 	}
 
+	/**
+	 * Show all of the currently stored objects in a formal manner.
+	 */
 	public String showUsers() throws DALException {
 		StringBuilder sb = new StringBuilder();
 		sb.append("\n/----------------------------- Brugere [" + data.getUserList().size()
@@ -40,6 +55,9 @@ public class Logic implements ILogic {
 		return sb.toString();
 	}
 
+	/**
+	 * Verifies whether the password parameter meets the security standards.
+	 */
 	public boolean verifyPassword(String password) {
 		if (password.length() >= 6 && catCount(password) >= 3) {
 			return true;
@@ -48,6 +66,10 @@ public class Logic implements ILogic {
 		}
 	}
 
+	/**
+	 * Tests 4 categories of password requirements for the verifyPassword
+	 * method.
+	 */
 	private int catCount(String password) {
 		int count = 0;
 
@@ -89,6 +111,9 @@ public class Logic implements ILogic {
 		return count;
 	}
 
+	/**
+	 * Method to switch between the various data layer implementations.
+	 */
 	@Override
 	public void switchDAL(int command) throws DALException {
 		switch (command) {
@@ -98,11 +123,8 @@ public class Logic implements ILogic {
 		case 2:
 			data = new PData();
 			break;
-		case 3:
-			data = new PDBData();
-			break;
 		default:
-			throw new DALException("ERROR!!!!!");
+			throw new DALException("Error changing data layer.");
 		}
 	}
 

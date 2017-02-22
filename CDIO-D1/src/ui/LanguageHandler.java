@@ -41,7 +41,6 @@ public class LanguageHandler {
 											"|--------------------|\n" + 
 											"| Ikke persistent  1 |\n" +
 											"| Persistent (fil) 2 |\n" + 
-											"| Persistent (db)  3 |\n" + 
 											"| Tilbage          0 |\n" +
 											"\\-------------------/\n";
 
