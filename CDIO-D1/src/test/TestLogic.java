@@ -1,4 +1,4 @@
-package test.logic;
+package test;
 
 import org.junit.After;
 import org.junit.Before;

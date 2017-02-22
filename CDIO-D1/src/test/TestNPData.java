@@ -1,43 +1,40 @@
-package test.data;
+package test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import data.IData;
 import data.IData.DALException;
-import data.PData;
+import data.NPData;
 import data.UserDTO;
 
 /**
  * Unit test of the NPData data layer.
  */
-public class TestPData {
+public class TestNPData {
 
 	private IData data;
 
-	/**
-	 * Constructor to initialize test data.
-	 */
-	public TestPData() {
-		data = new PData("test.bin");
+	@Before
+	public void setUp() throws Exception {
+		/*
+		 * 4 dummy users exist in the NPData implementation.
+		 * 
+		 * UserDTO("0123", 12, "FM01", "pass0123", "FM", "Foreman")
+		 * UserDTO("0122", 15, "Admin", "pass0122", "ADM", "Admin")
+		 * UserDTO("0121", 13, "OP01", "pass0121", "OP", "Operator")
+		 * UserDTO("0120", 14, "PHMC01", "pass0121", "PHMC", "Pharmacist")
+		 */
+		data = new NPData();
+	}
 
-		UserDTO u0 = new UserDTO("0000", 0, "bruger0", "password0", "u0");
-		UserDTO u1 = new UserDTO("0001", 1, "bruger1", "password1", "u1");
-		UserDTO u2 = new UserDTO("0002", 2, "bruger2", "password2", "u2");
-		UserDTO u3 = new UserDTO("0003", 3, "bruger3", "password3", "u3");
-		UserDTO u4 = new UserDTO("0004", 4, "bruger4", "password4", "u4");
-
-		try {
-			data.createUser(u0);
-			data.createUser(u1);
-			data.createUser(u2);
-			data.createUser(u3);
-			data.createUser(u4);
-		} catch (DALException e) {
-			e.printStackTrace();
-		}
+	@After
+	public void tearDown() throws Exception {
+		data = null;
 	}
 
 	/**
@@ -49,35 +46,35 @@ public class TestPData {
 	public void testgetUser() {
 		/* Exists */
 		try {
-			data.getUser(0);
+			data.getUser(12);
 		} catch (DALException e) {
 			fail("Failed to retrieve existing user!");
 		}
 
 		/* Exists */
 		try {
-			data.getUser(1);
+			data.getUser(15);
 		} catch (DALException e) {
 			fail("Failed to retrieve existing user!");
 		}
 
 		/* Exists */
 		try {
-			data.getUser(2);
+			data.getUser(13);
 		} catch (DALException e) {
 			fail("Failed to retrieve existing user!");
 		}
 
 		/* Exists */
 		try {
-			data.getUser(3);
+			data.getUser(14);
 		} catch (DALException e) {
 			fail("Failed to retrieve existing user!");
 		}
 
 		/* Does not exist */
 		try {
-			data.getUser(5);
+			data.getUser(300);
 			fail("Retrieved non-existing user!");
 		} catch (DALException e) {
 
@@ -85,7 +82,7 @@ public class TestPData {
 
 		/* Does not exist */
 		try {
-			data.getUser(6);
+			data.getUser(9999);
 			fail("Retrieved non-existing user!");
 		} catch (DALException e) {
 
@@ -104,7 +101,7 @@ public class TestPData {
 			e.printStackTrace();
 		}
 
-		UserDTO testUser = new UserDTO("232323", 0, "Test", "Test", "ttt");
+		UserDTO testUser = new UserDTO("232323", 253, "Test", "Test", "ttt");
 
 		try {
 			data.createUser(testUser);
@@ -120,12 +117,6 @@ public class TestPData {
 		}
 
 		assertEquals("User not inserted correctly.", expected, actual);
-
-		try {
-			data.deleteUser(0);
-		} catch (DALException e) {
-			e.printStackTrace();
-		}
 	}
 
 	/**
@@ -134,7 +125,7 @@ public class TestPData {
 	@Test
 	public void testUpdateUser() {
 		String newCpr = "0000";
-		UserDTO updatedUser = new UserDTO(newCpr, 0, "FM01", "pass0123", "FM", "Foreman");
+		UserDTO updatedUser = new UserDTO(newCpr, 12, "FM01", "pass0123", "FM", "Foreman");
 
 		try {
 			data.updateUser(updatedUser);
@@ -158,7 +149,7 @@ public class TestPData {
 		}
 
 		try {
-			data.deleteUser(0);
+			data.deleteUser(12);
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
