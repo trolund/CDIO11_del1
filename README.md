@@ -1,16 +1,16 @@
 # CDIO-D1 (Group 11)
 
-This project is created in cooperation with .... at DTU.
+This project is created in cooperation with 02324 Advanced Programming at DTU.
 
 ## Information
-Daniel Anusic
+Daniel Anusic (s155005)
 
-Daniel Larsen
+Daniel Larsen (s151641)
 
-Thomas Mascagni
+Thomas Mascagni (s165201)
 
-Behnia Farazan
+Behnia Farazan (s165203)
 
-Troels Lund
+Troels Lund (s161791)
 
-Helene Zgaya
+Helene Zgaya (s104745)
