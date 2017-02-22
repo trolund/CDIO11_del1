@@ -1,11 +1,15 @@
 package test.data;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import data.IData;
+import data.IData.DALException;
 import data.NPData;
+import data.UserDTO;
 
 public class TestPData {
 

@@ -150,14 +150,9 @@ public class PData implements IData {
 	 */
 	@Override
 	public void updateUser(UserDTO user) throws DALException {
-		for (UserDTO userDTO : userStoreList) {
-			if (userDTO.getUserId() == user.getUserId()) {
-				userStoreList.remove(userDTO);
-				userStoreList.add(user);
-				sortAndSave();
-				break;
-			}
-		}
+		userStoreList.remove(binarysearch(userStoreList, 0, userStoreList.size() - 1, user.getUserId()));
+		userStoreList.add(user);
+		Collections.sort(userStoreList);
 	}
 
 	/**
