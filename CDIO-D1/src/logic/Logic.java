@@ -51,7 +51,7 @@ public class Logic implements ILogic {
 				+ "] -----------------------------\\\n");
 		for (int i = 0; i < data.getUserList().size(); i++)
 			sb.append("| " + (i + 1) + ": " + data.getUserList().get(i) + "\n");
-		sb.append("\\-----------------------------------------------------------------------/\n");
+		sb.append("\\-----------------------------------------------------------------------/");
 		return sb.toString();
 	}
 

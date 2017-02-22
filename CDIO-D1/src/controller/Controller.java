@@ -19,9 +19,9 @@ public class Controller {
 	}
 
 	public void start() {
-		tui.print(languageHandler.menuMessage, true);
 
 		while (true) {
+			tui.print(languageHandler.menuMessage, true);
 			int command = tui.getCommand();
 
 			switch (command) {
@@ -39,18 +39,16 @@ public class Controller {
 			case 2:
 				try {
 					tui.print(logic.showUsers(), true);
-				} catch (DALException e1) {
-					tui.printErr("Kunne ikke vise brugere! langhandler pls", true);
+				} catch (DALException e) {
+					tui.printErr(languageHandler.unableToShowUsersErrMessage, true);
 				}
 				break;
 			case 3:
 				try {
 					logic.updateUser(tui.createUser());
-				} catch (DALException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				} catch (DALException e) {
+					tui.printErr(languageHandler.userNotUpdatedErrMessage, true);
 				}
-				
 				break;
 			case 4:
 				try {

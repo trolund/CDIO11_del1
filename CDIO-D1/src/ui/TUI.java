@@ -51,58 +51,56 @@ public class TUI implements ITUI {
 		} while (ini == null);
 
 		List<String> roles = new ArrayList<>();
-		boolean x = true;
+		boolean askForRole = true;
+
 		do {
 			print(languageHandler.enterRoleMessage, false);
-			print(languageHandler.commandMessage, false);
+			int command = getCommand();
 
-			int action = input.nextInt();
-			switch (action) {
+			switch (command) {
 			case 1:
-				if (roles.contains("Admin")) {
-					printErr("brugeren er allerede Admin", true);
+				if (roles.contains(languageHandler.adminRole)) {
+					printErr(languageHandler.duplicateRoleMessage(languageHandler.adminRole), true);
 				} else {
-					roles.add("Admin");
+					roles.add(languageHandler.adminRole);
 				}
 				break;
 			case 2:
-				if (roles.contains("Pharmacist")) {
-					printErr("brugeren er allerede Pharmacist", true);
-				}
-
-				else {
-					roles.add("Pharmacist");
+				if (roles.contains(languageHandler.pharmacistRole)) {
+					printErr(languageHandler.duplicateRoleMessage(languageHandler.pharmacistRole), true);
+				} else {
+					roles.add(languageHandler.pharmacistRole);
 				}
 				break;
 			case 3:
-				if (roles.contains("Foreman")) {
-					printErr("brugeren er allerede Foreman", true);
+				if (roles.contains(languageHandler.foremanRole)) {
+					printErr(languageHandler.duplicateRoleMessage(languageHandler.foremanRole), true);
 				} else {
-					roles.add("Foreman");
+					roles.add(languageHandler.foremanRole);
 				}
 				break;
 			case 4:
-				if (roles.contains("Operator")) {
-					printErr("brugeren er allerede Operator", true);
+				if (roles.contains(languageHandler.operatorRole)) {
+					printErr(languageHandler.duplicateRoleMessage(languageHandler.operatorRole), true);
 				} else {
-					roles.add("Operator");
+					roles.add(languageHandler.operatorRole);
 				}
 				break;
 			default:
-				print("rolle ikke tilføjet, pågrund af ugryldig komando", true);
+				print(languageHandler.invalidCommandMessage, true);
 			}
 
-			print("vil du tilføje en rolle mere? (y/n)", true);
+			print(languageHandler.anotherRoleMessage, true);
+
 			String confirm = "";
 			confirm = input.next();
-			if (confirm.equalsIgnoreCase("y")) {
-				x = true;
-			} else {
-				printErr("rolle tildeling afsluttet", true);
-				x = false;
-			}
 
-		} while (x);
+			if (confirm.equalsIgnoreCase(languageHandler.yInput)) {
+				askForRole = true;
+			} else {
+				askForRole = false;
+			}
+		} while (askForRole);
 
 		UserDTO userdto = new UserDTO(cpr, userId, userName, password, ini);
 		userdto.addAll(roles);
@@ -125,9 +123,10 @@ public class TUI implements ITUI {
 		do {
 			print(languageHandler.userDeletionMessage(userId), false);
 			confirm = input.next();
-		} while (!confirm.equalsIgnoreCase("y") && !confirm.equalsIgnoreCase("n"));
+		} while (!confirm.equalsIgnoreCase(languageHandler.yInput)
+				&& !confirm.equalsIgnoreCase(languageHandler.nInput));
 
-		if (confirm.equalsIgnoreCase("y")) {
+		if (confirm.equalsIgnoreCase(languageHandler.yInput)) {
 			return userId;
 		}
 		return -1;

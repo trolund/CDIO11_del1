@@ -64,7 +64,6 @@ public class PData implements IData {
 				}
 			}
 		}
-		System.out.println("DEBUGGING: Saved to file + " + dataFile.getName() + " + successfully.");
 	}
 
 	/**
@@ -97,7 +96,6 @@ public class PData implements IData {
 				}
 			}
 		}
-		System.out.println("DEBUGGING: Loaded from file + " + dataFile.getName() + " + successfully.");
 	}
 
 	/**
